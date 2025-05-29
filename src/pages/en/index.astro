@@ -15,20 +15,19 @@ const locale: keyof Multi = Astro.currentLocale || defaultLang;
   pageTitle="🧑‍🚀 Hello, multilingual Astronaut!"
   locale={locale}
 >
-  
   <p>
-    <strong>AstroLingo</strong> is an unofficial <a href="https://astro.build/"
-      >Astro</a
-    > starter theme. It adds multilingual support to Astro's <a
+    <strong>AstroLingo</strong> adds multilingual support to Astro's <a
       href="https://astro.build/themes/details/blog/"
       >minimalistic blog template</a
     >, without adding enormous code complexity.
   </p>
 
+  <p>It makes multilingual websites easier to manage.</p>
+  
   <p>New languages are easy to add.</p>
 
   <h2>Features</h2>
-  <strong>Inherited from Astro's minimalistic blog template:</strong>
+  <strong>Features inherited from Astro's minimalistic blog template:</strong>
   <ul>
     <li>✅ Minimal styling (make it your own!)</li>
     <li>✅ Top Lighthouse performance</li>
@@ -46,21 +45,24 @@ const locale: keyof Multi = Astro.currentLocale || defaultLang;
     <li>✅ Multilingual paths</li>
     <li>✅ Multilingual pagination (blogs and tags)</li>
     <li>
-      ✅ Independently customisable pages (pages in different languages can have
-      their own styles).
+      ✅ Independently customisable pages (pages in different languages can be different).
     </li>
   </ul>
   <p>Have fun!</p>
   <p>---</p>
   <p>
-    Ps1. More detailed guidance is available on <a
+    Ps1. Detailed guidance available via <a
       href="https://github.com/jbolns/astrolingo"
       target="_blank">GitHub</a
     >.
   </p>
   <p>
-    Ps2. Check <a href="https://www.josebolanos.xyz/" target="_blank"
+    Ps2. Demo available <a href="https://astrolingo.josebolanos.xyz/" target="_blank"
+      >here</a>.
+  </p>
+  <p>
+    Ps3. Check <a href="https://www.josebolanos.xyz/" target="_blank"
       >my website</a
-    > for an example of how to take AstroLingo next level.
+    > for a real world implementation that expands on AstroLingo.
   </p>
 </SimplePageLayout>
