@@ -1,4 +1,4 @@
-## AstroLingo: Multilingual Astro Blog
+## AstroLingo: Multilingual Astro Blog Template
 [**AstroLingo**](https://github.com/jbolns/astrolingo) adds multilingual support to Astro's [minimalistic blog template](https://astro.build/themes/details/blog/). It packs all (or at least much of) the functionality needed for a multilingual personal, blog, or portfolio website.
 
 If your website does not need multiple languages, *AstroLingo* is probably a bit of an overkill.
@@ -23,10 +23,7 @@ Added features:
 - ✅ Independently customisable pages (pages can look different across languages).
 
 ## 🚀 Guidance
-To keep things simple, *AstroLingo* relies on Astro's underlying functionality.
-
-### Standard structure
-Since it relies heavily on Astro's functionality, understanding the structure of an *AstroLingo* is important.
+Since *AstroLingo* relies heavily on Astro's functionality, understanding folder structure is an important first step.
 
 The standard *AstroLingo* project looks as follows.
 
@@ -67,10 +64,12 @@ The standard *AstroLingo* project looks as follows.
 └── tsconfig.json
 ```
 
-#### Internationalisation
-Key language configuration files are in the `src\i18n` folder.
+Once you are familiar with the folder structure or have adjusted the structure to your own needs (relevant guidance [here](https://docs.astro.build/en/guides/internationalization/#create-localized-folders)), you can start modifying config files and creating content to suit your needs.
 
-=> The file `src\i18n\ui.ts` is for language defaults and top-level navigation links to show in header.
+### Internationalisation
+The key language configuration files are in the `src\i18n` folder.
+
+The file `src\i18n\ui.ts` is for language defaults and top-level navigation links to show in header.
 - `languages`: a list of all languages supported
   - Used variously across AstroLingo to render the correct string or path for a given language
 - `defaultLang`: the site's default language
@@ -80,61 +79,64 @@ Key language configuration files are in the `src\i18n` folder.
 - `navLinks`: top-level links for the entire website
   - Used in the component that generates top-level navigation links to render the correct links for each language.
 
-=> The file `src\i18n\sections.ts` is for general website info needed across the site, like the website name and description.
+The file `src\i18n\sections.ts` is for general website info used repeatedly across the site, like the website name and description. The shortest way to understand the purpose of this file is: if you need to write something more than a few times across your site, put it here and just call it from elsewhere. Easier!
 
-=> The file `src\i18n\routes.ts` is for redirection rules when changing between languages.
-- If you want URLs across languages to be the same (e.g. `en\about\`, `es\about\`), this file is not needed.
-- Use to define equivalent routes across different languages (e.g. `en\about\` <---> `es\acerca\`).
+The file `src\i18n\routes.ts` is for redirection rules.
+- Ignore this file if your slugs are essentially the across languages (e.g. `en\about\`, `es\about\`). The language bar is designed to automatically redirect to the current slug in a different language.
+- If you use language-specific slugs, this is where you enter the slug-equivalences (e.g. `en\about\` <---> `es\acerca\`).
 
-=> The file `src\i18n\utils.ts` contains utility functions needed to support internationalization.
+The file `src\i18n\utils.ts` contains utility functions needed to support internationalization.
+- If you want to modify the default behaviour of the language bar, this is the file you need to edit. 
+- If you want to add icons (it is purposely icon-free so that users can use their preferred icon sets), this is where you add the call to the component that renders each language into an icon (most typically, a flag). 
 
-#### Content
-The `src\content\` directory contains "collections" of related Markdown and MDX documents that eventually become blog, portfolio, and/or collection entries. 
-
-This folder follows the same rationale as the pages folder.
-- To add a new collection, create a folder named after the collection
-- To add a language, create a folder with add an `.md` or `.mdx` file under the desired `[collection]/[language]` folder
-- You do not need to translate every entry
-  - Entries in each folder will show on the respective blog regardless of whether they have equivalents in other languages.
-- To avoid image duplication, all images for blogs go to Astro's standard `public\` directory.
-
-Do **NOT** name collection files with the exact acronym of any language or collection used in the site. For example:
-- If you use `en` as a language, avoid naming files `\en.md`, `\en.astro`, or `\en.whatever`
-- If you have a collection named `blog`, files named `\blog.md`, `\blog.astro`, or `\blog.whatever` could be problematic.
-
-#### Pages
+### Creating top-level pages
 Files in `src\pages\lang_1`, `src\pages\lang_2`, `...`, to `src\pages\lang_N` automatically become top-level pages with the URL format `./[lang]/[filename]/`.
 - To add a new language, add a folder named with the language code of the new language. 
 - To create pages for that language, add files inside that folder.
-- You can use different filenames across language folders (URLs will be different, so you will need to add a route equivalence in `src\i18n\routes.ts`). 
+- You can use different filenames across language folders (in which case, URLs will be different, so you will need to add a route equivalence in `src\i18n\routes.ts`). 
 
-Files in `src\pages\blog\[lang]` generate blog listing with format `blog/[lang]/` and blog entries with format `blog/[lang]/[entry]` from the files in the content folder using the following logic.
+Files in `src\pages\blog\[lang]` generate blog reel with format `blog/[lang]/` and blog entries with format `blog/[lang]/[entry]` from the files in the content folder. The functions inside the files in this folder follow a relatively straightforward logic:
 - Get all content in the specific collection using Astro's `getCollection()`
 - Map content to language using `flatMap()` and `map()`
 - Create pages/paths for all possible blog indexes, entries, and tags combinations using Astro's `getStaticPaths()`.
 
-If you want to add collections, simply recreate the logic in the existing blog folder. Paths for additional collection will use the format `./[collection]/[lang]/[entry]/`.
-- It is possible to change the folder structure so collection paths have the language at the very beginning of the path, but I cannot recommend it. I tried it, and it makes it really difficult to manage route equivalences with multiple collections.
+AstroLingo comes with one collection by default: blog. To add more collections, simply recreate the logic in the `src\pages\blog\` folder. Paths for additional collection will use the format `./[collection]/[lang]/[entry]/`.
+- For guidance on how to create Astro collections and collection schemas, see [here](https://docs.astro.build/en/guides/content-collections/).
+- It is possible to change the folder structure so the language acronyms come before the collection name (e.g. `example.com/[lang]/blog`) rather than after (e.g. `example.com/blog/[lang]`), which, in my experience, makes it harder to manage route equivalences when you have multiple collections.
 
-#### Other folders & files
+### Creating and managing content
+The `src\content\` directory contains "collections" of related Markdown and MDX documents with the content that ultimately gets rendered as a blog entries (or portfolio, or services, or other entries – depending on how many collections you define). 
+
+This folder follows the same rationale as the pages folder.
+- To add a new collection, create a folder named after the collection
+- To add a language, create a folder with add an `.md` or `.mdx` file under the desired `[collection]/[language]` folder
+- You do not need to translate every single entry
+  - Entries in each folder will show on the respective blog regardless of whether they have equivalents in other languages.
+  - But if there is a language without entry, best edit `src\i18n\routes.ts` to redirect to your home or blog page for that missing entry to avoid "Page Not Found" errors.
+- To avoid image duplication, all images for blogs go to Astro's standard `public\` directory.
+
+**FORBIDDEN KEYWORDS.** Do **NOT** name entries inside any collection with the exact acronym of any language used in the site or the exact name of any collection used in the site. For example:
+- If you use `en` as a language, avoid naming files `\en.md`, `\en.astro`, or `\en.whatever`
+- If you have a collection named `blog`, files named `\blog.md`, `\blog.astro`, or `\blog.whatever` could be problematic.
+
+### Other folders & files
 - The `src\components\` folder is the standard Astro/React/Vue/Svelte/Preact components folder.
   - A few components needed for multilingual functionality are included.
 - The `src\layouts\` folder contains layouts that help render pages and blogs across the site.
   - You can create additional layouts and use them as wrappers aroung other components (you might need to slightly adapt the code to use them).
 - Hero images referenced in the frontmatter of markdown (blog) files must be placed in the `public\` directory.
   - There are ways around this, but this is not within the scope of this theme.
-- CSS styles were removed into a single file in the `src\styles` folders.
+- CSS styles are in a single file in the `src\styles` folders.
   - To use your own styles, recode or replace `src\styles\global.css`.
   - Alternatively, delete the existing styles and use a stylying Astro integration, like Tailwind (that's what I did with my own website).
 - The *file* `src\types.ts` if for types additional to what Astro already offers.
 
-## 🛣️ Other
-Since *AstroLingo* relies heavily on Astro's underlying functionality, it is possible to do more things such as, for instance:
-- Redirect the shared home to the default language
-- Hide the default language in URLs
+## 🛣️ Expanding AstroLingo
+*AstroLingo* is very expandable
 
-Read [Astro's documentation](https://docs.astro.build/en/guides/internationalization/#prefixdefaultlocale) for details about how to do this and how internalisation works.
+Since it relies on Astro's underlying structure, AstroLingo can be modified to, for instance, redirect the shared home to a default language, or entirely hide the default language in URLs. Read [Astro's documentation](https://docs.astro.build/en/guides/internationalization/#prefixdefaultlocale) for details about how to do this and how internalisation works. And remember that any such changes naturally imply a need for revisiting the files in `src\i18n`.
 
+Since it is based on Astro's minimalistic blog template, there is ample room for visual editing and expansion. I use AstroLingo on my own website, for instance, in combination with Tailwind and even 3D animations using Three.js. I also coded an improved version of the language bar that hides any non-existing page, to not have to worry about manually encoding redirections when I do not want to translate some content. 
 
 ## 💻 Commands
 All commands are run from the root of the project, from a terminal:
@@ -159,3 +161,6 @@ To learn more about Astro, check out [their documentation](https://docs.astro.bu
 This theme is published under a standard [MIT license](./LICENSE).
 
 I am more of an Apache person myself. However, [Astro uses MIT](https://github.com/withastro/astro/blob/main/LICENSE). It made sense to stick with it.
+
+## 📐 Services
+[Get in touch](https://www.josebolanos.xyz/en/) if you are interested in advice or services to implement and/or expand on *AstroLingo*.
