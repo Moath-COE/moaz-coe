@@ -3,7 +3,7 @@ title: 'ES Relleno 1'
 description: 'Post de relleno en Español'
 locale: "es"
 pubDate: 'Jul 08 2022'
-heroImage: '/blog-placeholder-3.jpg'
+heroImage: '/blog-placeholder-4.jpg'
 tags: ["vida", "programación"]
 ---
 

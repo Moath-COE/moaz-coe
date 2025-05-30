@@ -3,7 +3,7 @@ title: 'FI paikkamerkki 1'
 description: 'Ensimmäinen blogi FI'
 locale: "fi"
 pubDate: 'Jul 08 2022'
-heroImage: '/blog-placeholder-3.jpg'
+heroImage: '/blog-placeholder-4.jpg'
 tags: ["elämää", "ohjelmointi"]
 ---
 

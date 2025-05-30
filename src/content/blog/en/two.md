@@ -3,7 +3,7 @@ title: 'EN placeholder 2'
 description: 'Second post in English'
 locale: "en"
 pubDate: 'Jul 15 2022'
-heroImage: '/blog-placeholder-4.jpg'
+heroImage: '/blog-placeholder-5.jpg'
 tags: ["life", "movies"]
 ---
 

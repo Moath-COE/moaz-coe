@@ -1,12 +1,12 @@
 ## AstroLingo: Multilingual Astro Blog Template
-[**AstroLingo**](https://github.com/jbolns/astrolingo) adds multilingual support to Astro's [minimalistic blog template](https://astro.build/themes/details/blog/). It packs all (or at least much of) the functionality needed for a multilingual personal, blog, or portfolio website.
+[**AstroLingo**](https://github.com/jbolns/astrolingo) is a minimalistic Astro blog template with robust multilingual (i18n) support. It packs all (or at least much of) the functionality needed for a multilingual personal, blog, or portfolio website, and leaves you room to easily adjust the design to match your brand and taste.
 
 If your website does not need multiple languages, *AstroLingo* is probably a bit of an overkill.
 
 If it does, *AstroLingo* might save you many hours of work.
 
 ## 📱Features
-Inherited features (from Astro's minimalistic blog template):
+General features:
 - ✅ Minimal styling (make it your own!)
 - ✅ Outstanding Lighthouse performance
 - ✅ SEO-friendly with canonical URLs and OpenGraph data
@@ -14,7 +14,7 @@ Inherited features (from Astro's minimalistic blog template):
 - ✅ RSS Feed support
 - ✅ Markdown & MDX support
 
-Added features:
+Multilingual (i18n) features:
 - ✅ Multilingual pages
 - ✅ Multilingual blogs
 - ✅ Multilingual tags (tags can be different across languages)
@@ -151,7 +151,7 @@ All commands are run from the root of the project, from a terminal:
 | `npm run astro -- --help` | Get help using the Astro CLI                     |
 
 ## 🤗 Credits
-*AstroLingo* is based off of Astro's [minimalistic blog template](https://astro.build/themes/details/blog/), itself based off [Bear Blog](https://github.com/HermanMartinus/bearblog/). That said, *AstroLingo* is separate and independent from Astro.
+*AstroLingo's* bare-bones minimalistic look is based on a historical minimalistic blog template by Astro that is no longer available but I used to like a lot, which was itself based on [Bear Blog](https://github.com/HermanMartinus/bearblog/).
 
 To learn more about me, check out my [website](https:www.josebolanos.xyz/) or [GitHub](https://github.com/jbolns).
 
