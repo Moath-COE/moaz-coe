@@ -22,6 +22,14 @@ Multilingual (i18n) features:
 - ✅ Multilingual pagination (blogs and tag lists paginated by language)
 - ✅ Independently customisable pages (pages can look different across languages).
 
+## Examples
+
+For a demo showcasing AstroLingo as it comes by default, see [here](href="https://astrolingo.josebolanos.xyz/).
+
+Or check [my website](https://www.josebolanos.xyz/) for a real world implementation that uses and expands on AstroLingo.
+
+> *Note for other developers.* If you use AstroLingo in a project, feel free to submit an issue adding your website here.
+
 ## 🚀 Guidance
 Since *AstroLingo* relies heavily on Astro's functionality, understanding folder structure is an important first step.
 
