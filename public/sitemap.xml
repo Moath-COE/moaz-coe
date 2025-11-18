@@ -3,17 +3,25 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
 
   <url>
-    <loc>http://localhost:1313/posts/first_post/</loc>
+    <loc>http://localhost:1313/github.io/moaz-coe/</loc>
+    <lastmod>2022-01-25T00:00:00+00:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>http://localhost:1313/</loc>
+    <loc>http://localhost:1313/github.io/moaz-coe/posts/first_post/</loc>
+    <lastmod>2022-01-25T00:00:00+00:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>http://localhost:1313/posts/</loc>
+    <loc>http://localhost:1313/github.io/moaz-coe/posts/</loc>
+    <lastmod>2022-01-25T00:00:00+00:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>http://localhost:1313/github.io/moaz-coe/posts/second_post/</loc>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
