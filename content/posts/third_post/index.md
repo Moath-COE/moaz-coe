@@ -9,3 +9,5 @@ categories: ["apple", "ecosystem", "tutorial"]
 # This is how to escape the Apple ecosystem
 
 First be brave and stop wasting money on useless stuff.
+
+This is more stuff to say to fix the problem
