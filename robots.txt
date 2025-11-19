@@ -1,3 +1,3 @@
 User-agent: *
 Allow: /
-Sitemap: https://moath-coe/github.io/moaz-coe/sitemap.xml
+Sitemap: moaz-coe.com/sitemap.xml
