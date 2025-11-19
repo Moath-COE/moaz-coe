@@ -2,51 +2,81 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Categories on Moaz-COE</title>
-    <link>http://localhost:1313/github.io/moaz-coe/categories/</link>
+    <link>http://localhost:1313/categories/</link>
     <description>Recent content in Categories on Moaz-COE</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <managingEditor>moathabdelaziz@outlook.com (Moaz Abdelaziz)</managingEditor>
     <webMaster>moathabdelaziz@outlook.com (Moaz Abdelaziz)</webMaster>
     <copyright>Copy, _right?_ :thinking_face:</copyright>
-    <lastBuildDate>Tue, 25 Jan 2022 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/github.io/moaz-coe/categories/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 10 Nov 2025 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/categories/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Apple</title>
+      <link>http://localhost:1313/categories/apple/</link>
+      <pubDate>Mon, 10 Nov 2025 00:00:00 +0000</pubDate>
+      <author>moathabdelaziz@outlook.com (Moaz Abdelaziz)</author>
+      <guid>http://localhost:1313/categories/apple/</guid>
+      <description></description>
+      
+    </item>
+    
+    <item>
+      <title>Ecosystem</title>
+      <link>http://localhost:1313/categories/ecosystem/</link>
+      <pubDate>Mon, 10 Nov 2025 00:00:00 +0000</pubDate>
+      <author>moathabdelaziz@outlook.com (Moaz Abdelaziz)</author>
+      <guid>http://localhost:1313/categories/ecosystem/</guid>
+      <description></description>
+      
+    </item>
+    
+    <item>
+      <title>Tutorial</title>
+      <link>http://localhost:1313/categories/tutorial/</link>
+      <pubDate>Mon, 10 Nov 2025 00:00:00 +0000</pubDate>
+      <author>moathabdelaziz@outlook.com (Moaz Abdelaziz)</author>
+      <guid>http://localhost:1313/categories/tutorial/</guid>
+      <description></description>
+      
+    </item>
     
     <item>
       <title>About</title>
-      <link>http://localhost:1313/github.io/moaz-coe/categories/about/</link>
-      <pubDate>Tue, 25 Jan 2022 00:00:00 +0000</pubDate>
+      <link>http://localhost:1313/categories/about/</link>
+      <pubDate>Sat, 25 Jan 2025 00:00:00 +0000</pubDate>
       <author>moathabdelaziz@outlook.com (Moaz Abdelaziz)</author>
-      <guid>http://localhost:1313/github.io/moaz-coe/categories/about/</guid>
+      <guid>http://localhost:1313/categories/about/</guid>
       <description></description>
       
     </item>
     
     <item>
       <title>First</title>
-      <link>http://localhost:1313/github.io/moaz-coe/categories/first/</link>
-      <pubDate>Tue, 25 Jan 2022 00:00:00 +0000</pubDate>
+      <link>http://localhost:1313/categories/first/</link>
+      <pubDate>Sat, 25 Jan 2025 00:00:00 +0000</pubDate>
       <author>moathabdelaziz@outlook.com (Moaz Abdelaziz)</author>
-      <guid>http://localhost:1313/github.io/moaz-coe/categories/first/</guid>
+      <guid>http://localhost:1313/categories/first/</guid>
       <description></description>
       
     </item>
     
     <item>
       <title>New</title>
-      <link>http://localhost:1313/github.io/moaz-coe/categories/new/</link>
-      <pubDate>Tue, 25 Jan 2022 00:00:00 +0000</pubDate>
+      <link>http://localhost:1313/categories/new/</link>
+      <pubDate>Sat, 25 Jan 2025 00:00:00 +0000</pubDate>
       <author>moathabdelaziz@outlook.com (Moaz Abdelaziz)</author>
-      <guid>http://localhost:1313/github.io/moaz-coe/categories/new/</guid>
+      <guid>http://localhost:1313/categories/new/</guid>
       <description></description>
       
     </item>
     
     <item>
       <title>Welcome</title>
-      <link>http://localhost:1313/github.io/moaz-coe/categories/welcome/</link>
-      <pubDate>Tue, 25 Jan 2022 00:00:00 +0000</pubDate>
+      <link>http://localhost:1313/categories/welcome/</link>
+      <pubDate>Sat, 25 Jan 2025 00:00:00 +0000</pubDate>
       <author>moathabdelaziz@outlook.com (Moaz Abdelaziz)</author>
-      <guid>http://localhost:1313/github.io/moaz-coe/categories/welcome/</guid>
+      <guid>http://localhost:1313/categories/welcome/</guid>
       <description></description>
       
     </item>

@@ -2,33 +2,43 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Moaz-COE</title>
-    <link>http://localhost:1313/github.io/moaz-coe/</link>
+    <link>http://localhost:1313/</link>
     <description>Recent content on Moaz-COE</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <managingEditor>moathabdelaziz@outlook.com (Moaz Abdelaziz)</managingEditor>
     <webMaster>moathabdelaziz@outlook.com (Moaz Abdelaziz)</webMaster>
     <copyright>Copy, _right?_ :thinking_face:</copyright>
-    <lastBuildDate>Thu, 25 Aug 2022 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/github.io/moaz-coe/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 10 Nov 2025 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
-      <title>My Second Blog Post</title>
-      <link>http://localhost:1313/github.io/moaz-coe/posts/second_post/</link>
-      <pubDate>Thu, 25 Aug 2022 00:00:00 +0000</pubDate>
+      <title>What about Apple?</title>
+      <link>http://localhost:1313/posts/third_post/</link>
+      <pubDate>Mon, 10 Nov 2025 00:00:00 +0000</pubDate>
       <author>moathabdelaziz@outlook.com (Moaz Abdelaziz)</author>
-      <guid>http://localhost:1313/github.io/moaz-coe/posts/second_post/</guid>
+      <guid>http://localhost:1313/posts/third_post/</guid>
       <description>Learn more about me and why I am starting this blog.</description>
-      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="http://localhost:1313/github.io/moaz-coe/posts/second_post/featured.jpg" />
+      
     </item>
     
     <item>
       <title>My First Blog Post</title>
-      <link>http://localhost:1313/github.io/moaz-coe/posts/first_post/</link>
-      <pubDate>Tue, 25 Jan 2022 00:00:00 +0000</pubDate>
+      <link>http://localhost:1313/posts/first_post/</link>
+      <pubDate>Sat, 25 Jan 2025 00:00:00 +0000</pubDate>
       <author>moathabdelaziz@outlook.com (Moaz Abdelaziz)</author>
-      <guid>http://localhost:1313/github.io/moaz-coe/posts/first_post/</guid>
+      <guid>http://localhost:1313/posts/first_post/</guid>
       <description>Learn more about me and why I am starting this blog.</description>
-      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="http://localhost:1313/github.io/moaz-coe/posts/first_post/featured.jpg" />
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="http://localhost:1313/posts/first_post/featured.jpg" />
+    </item>
+    
+    <item>
+      <title>My Second Blog Post</title>
+      <link>http://localhost:1313/posts/second_post/</link>
+      <pubDate>Thu, 25 Aug 2022 00:00:00 +0000</pubDate>
+      <author>moathabdelaziz@outlook.com (Moaz Abdelaziz)</author>
+      <guid>http://localhost:1313/posts/second_post/</guid>
+      <description>Learn more about me and why I am starting this blog.</description>
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="http://localhost:1313/posts/second_post/featured.jpg" />
     </item>
     
   </channel>
