@@ -43,14 +43,14 @@ forgejoDefaultServer = "https://v11.next.forgejo.org"
 
 [footer]
   showMenu = true
-  showCopyright = true
+  showCopyright = false
   showThemeAttribution = true
-  showAppearanceSwitcher = true
-  showScrollToTop = true
+  showAppearanceSwitcher = false
+  showScrollToTop = false
 
 [homepage]
-  layout = "profile" # valid options: page, profile, hero, card, background, custom
-  #homepageImage = "IMAGE.jpg" # used in: hero, and card
+  layout = "background" # valid options: page, profile, hero, card, background, custom
+  homepageImage = "img/retro-setup.jpg" # used in: hero, and card
   showRecent = true
   showRecentItems = 5
   showMoreLink = false

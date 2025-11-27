@@ -4,6 +4,7 @@ date: 2025-01-25
 description: "Welcome to my blog!"
 summary: "Learn more about me and why I am starting this blog."
 categories: ["welcome", "new", "about", "first"]
+draft: true
 ---
 
 ## This is my first blog post.
