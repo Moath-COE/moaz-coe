@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Meta on Moaz-COE</title>
+    <link>http://localhost:1313/tags/meta/</link>
+    <description>Recent content in Meta on Moaz-COE</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <managingEditor>moathabdelaziz@outlook.com (Moaz Abdelaziz)</managingEditor>
+    <webMaster>moathabdelaziz@outlook.com (Moaz Abdelaziz)</webMaster>
+    
+    <lastBuildDate>Thu, 27 Nov 2025 12:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/tags/meta/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Why This Blog</title>
+      <link>http://localhost:1313/posts/why-this-blog/</link>
+      <pubDate>Thu, 27 Nov 2025 12:00:00 +0000</pubDate>
+      <author>moathabdelaziz@outlook.com (Moaz Abdelaziz)</author>
+      <guid>http://localhost:1313/posts/why-this-blog/</guid>
+      <description>A short note on goals and intent behind this blog.</description>
+      
+    </item>
+    
+  </channel>
+</rss>

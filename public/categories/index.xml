@@ -9,34 +9,14 @@
     <managingEditor>moathabdelaziz@outlook.com (Moaz Abdelaziz)</managingEditor>
     <webMaster>moathabdelaziz@outlook.com (Moaz Abdelaziz)</webMaster>
     
-    <lastBuildDate>Mon, 10 Nov 2025 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/categories/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 27 Nov 2025 12:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/categories/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
-      <title>Apple</title>
-      <link>http://localhost:1313/categories/apple/</link>
-      <pubDate>Mon, 10 Nov 2025 00:00:00 +0000</pubDate>
+      <title>Announcements</title>
+      <link>http://localhost:1313/categories/announcements/</link>
+      <pubDate>Thu, 27 Nov 2025 12:00:00 +0000</pubDate>
       <author>moathabdelaziz@outlook.com (Moaz Abdelaziz)</author>
-      <guid>http://localhost:1313/categories/apple/</guid>
-      <description></description>
-      
-    </item>
-    
-    <item>
-      <title>Ecosystem</title>
-      <link>http://localhost:1313/categories/ecosystem/</link>
-      <pubDate>Mon, 10 Nov 2025 00:00:00 +0000</pubDate>
-      <author>moathabdelaziz@outlook.com (Moaz Abdelaziz)</author>
-      <guid>http://localhost:1313/categories/ecosystem/</guid>
-      <description></description>
-      
-    </item>
-    
-    <item>
-      <title>Tutorial</title>
-      <link>http://localhost:1313/categories/tutorial/</link>
-      <pubDate>Mon, 10 Nov 2025 00:00:00 +0000</pubDate>
-      <author>moathabdelaziz@outlook.com (Moaz Abdelaziz)</author>
-      <guid>http://localhost:1313/categories/tutorial/</guid>
+      <guid>http://localhost:1313/categories/announcements/</guid>
       <description></description>
       
     </item>
@@ -44,7 +24,7 @@
     <item>
       <title>About</title>
       <link>http://localhost:1313/categories/about/</link>
-      <pubDate>Sat, 25 Jan 2025 00:00:00 +0000</pubDate>
+      <pubDate>Thu, 25 Aug 2022 00:00:00 +0000</pubDate>
       <author>moathabdelaziz@outlook.com (Moaz Abdelaziz)</author>
       <guid>http://localhost:1313/categories/about/</guid>
       <description></description>
@@ -54,29 +34,9 @@
     <item>
       <title>First</title>
       <link>http://localhost:1313/categories/first/</link>
-      <pubDate>Sat, 25 Jan 2025 00:00:00 +0000</pubDate>
+      <pubDate>Thu, 25 Aug 2022 00:00:00 +0000</pubDate>
       <author>moathabdelaziz@outlook.com (Moaz Abdelaziz)</author>
       <guid>http://localhost:1313/categories/first/</guid>
-      <description></description>
-      
-    </item>
-    
-    <item>
-      <title>New</title>
-      <link>http://localhost:1313/categories/new/</link>
-      <pubDate>Sat, 25 Jan 2025 00:00:00 +0000</pubDate>
-      <author>moathabdelaziz@outlook.com (Moaz Abdelaziz)</author>
-      <guid>http://localhost:1313/categories/new/</guid>
-      <description></description>
-      
-    </item>
-    
-    <item>
-      <title>Welcome</title>
-      <link>http://localhost:1313/categories/welcome/</link>
-      <pubDate>Sat, 25 Jan 2025 00:00:00 +0000</pubDate>
-      <author>moathabdelaziz@outlook.com (Moaz Abdelaziz)</author>
-      <guid>http://localhost:1313/categories/welcome/</guid>
       <description></description>
       
     </item>
