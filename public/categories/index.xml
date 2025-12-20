@@ -21,25 +21,5 @@
       
     </item>
     
-    <item>
-      <title>About</title>
-      <link>http://localhost:1313/categories/about/</link>
-      <pubDate>Thu, 25 Aug 2022 00:00:00 +0000</pubDate>
-      <author>moathabdelaziz@outlook.com (Moaz Abdelaziz)</author>
-      <guid>http://localhost:1313/categories/about/</guid>
-      <description></description>
-      
-    </item>
-    
-    <item>
-      <title>First</title>
-      <link>http://localhost:1313/categories/first/</link>
-      <pubDate>Thu, 25 Aug 2022 00:00:00 +0000</pubDate>
-      <author>moathabdelaziz@outlook.com (Moaz Abdelaziz)</author>
-      <guid>http://localhost:1313/categories/first/</guid>
-      <description></description>
-      
-    </item>
-    
   </channel>
 </rss>
