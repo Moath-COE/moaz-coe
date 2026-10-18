@@ -33,3 +33,4 @@ pnpm-debug.log*
 src/content/blog/.obsidian/*
 !src/content/blog/.obsidian/app.json
 !src/content/blog/.obsidian/templates.json
+src/content/blog/.claudian/*

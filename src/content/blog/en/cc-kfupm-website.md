@@ -1,11 +1,14 @@
 ---
-title: "Building the Computer Club website at KFUPM"
-description: "A bilingual club website and members dashboard built by a small student team with Next.js, tRPC and Prisma, and the parts of it I built."
+title: Building the Computer Club website at KFUPM
+description: A bilingual club website and members dashboard built by a small student team with Next.js, tRPC and Prisma, and the parts of it I built.
 locale: en
 pubDate: 2026-10-18
 kind: project
-tags: ["Next.js", "TypeScript", "Case study"]
-draft: false
+tags:
+  - Next.js
+  - TypeScript
+  - Case study
+draft: true
 ---
 
 <!-- TODO: Review every section, replace the TODO notes, then set draft: false. Facts below come from the Razorback360/CC_Website repository. -->

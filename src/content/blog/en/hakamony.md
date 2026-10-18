@@ -1,11 +1,14 @@
 ---
 title: "Hakamony: organising pickup games without the group-chat chaos"
-description: "How four of us built an Arabic, mobile-first web app that splits players into teams, schedules matches across fields, and divides the bill — in one summer."
+description: How four of us built an Arabic, mobile-first web app that splits players into teams, schedules matches across fields, and divides the bill — in one summer.
 locale: en
 pubDate: 2026-10-18
 kind: project
-tags: ["Next.js", "Product", "Case study"]
-draft: false
+tags:
+  - Next.js
+  - Product
+  - Case study
+draft: true
 ---
 
 <!-- TODO: Review every section, replace the TODO notes, then set draft: false. Facts below come from the Hakamony/source repository. -->
