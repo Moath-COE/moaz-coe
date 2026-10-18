@@ -1,11 +1,11 @@
 ---
-title: 'Computerizer: building the frontend for a PC-building site, twice'
-description: 'A PC-building helper with a guided build tool, price comparison and a blog. How its frontend went from Django templates to a Next.js rewrite, and what an unfinished project taught me.'
+title: "Computerizer: building the frontend for a PC-building site, twice"
+description: "A PC-building helper with a guided build tool, price comparison and a blog. How its frontend went from Django templates to a Next.js rewrite, and what an unfinished project taught me."
 locale: en
 pubDate: 2026-10-18
 kind: project
-tags: ['Next.js', 'Frontend', 'Case study']
-draft: true
+tags: ["Next.js", "Frontend", "Case study"]
+draft: false
 ---
 
 <!-- TODO: Review every section, replace the TODO notes, then set draft: false. Facts below come from the public Computerizer/React-Frontend and Computerizer/Backend repositories. -->
