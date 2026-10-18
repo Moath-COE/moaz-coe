@@ -1,0 +1,25 @@
+---
+import type { Lang } from '@types';
+import BlogEntryPreview from './BlogEntryPreview.astro';
+import { labels } from '@i18n/ui';
+import { localize } from '@i18n/utils';
+import { publishedPosts } from '@lib/blog';
+
+interface Props { locale: Lang; limit?: number }
+const { locale, limit = 5 } = Astro.props;
+const posts = await publishedPosts(locale);
+---
+
+<section class="recent layout" aria-labelledby="recent-heading">
+	<div class="margin">
+		<h2 class="eyebrow" id="recent-heading">{labels[locale].recent}</h2>
+		{posts.length > limit && <a class="more-link" href={localize(locale, 'blog')}>{labels[locale].allPosts} <span class="arrow" aria-hidden="true">→</span></a>}
+	</div>
+	<div class="wide">
+		{posts.length ? (
+			<ul class="entries">{posts.slice(0, limit).map((post) => <BlogEntryPreview post={post} />)}</ul>
+		) : (
+			<p class="empty-state">{labels[locale].empty}</p>
+		)}
+	</div>
+</section>

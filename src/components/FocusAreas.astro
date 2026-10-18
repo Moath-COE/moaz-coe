@@ -1,0 +1,24 @@
+---
+import type { Lang } from '@types';
+import { site } from '@i18n/sections';
+import { labels } from '@i18n/ui';
+
+interface Props { locale: Lang }
+const { locale } = Astro.props;
+const number = (n: number) => new Intl.NumberFormat(locale, { minimumIntegerDigits: 2 }).format(n);
+---
+
+<section class="focus layout" aria-labelledby="focus-heading">
+	<div class="margin">
+		<h2 class="eyebrow" id="focus-heading">{labels[locale].focus}</h2>
+	</div>
+	<ol class="focus-list">
+		{site.focus.map((item, i) => (
+			<li>
+				<span class="focus-index meta">{number(i + 1)}</span>
+				<h3>{item.title[locale]}</h3>
+				<p>{item.text[locale]}</p>
+			</li>
+		))}
+	</ol>
+</section>

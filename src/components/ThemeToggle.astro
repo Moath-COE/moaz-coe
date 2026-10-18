@@ -1,0 +1,28 @@
+---
+interface Props { label: string }
+const { label } = Astro.props;
+---
+
+<button class="theme-toggle" type="button" aria-label={label} title={label}>
+	<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+		<circle cx="12" cy="12" r="8" fill="none" stroke="currentColor" stroke-width="1.5" />
+		<path class="theme-toggle-fill" d="M12 4a8 8 0 0 1 0 16Z" fill="currentColor" />
+	</svg>
+</button>
+
+<script>
+	const toggle = document.querySelector<HTMLButtonElement>('.theme-toggle');
+	const root = document.documentElement;
+	const sync = () => toggle?.setAttribute('aria-pressed', String(root.dataset.theme === 'dark'));
+	sync();
+	toggle?.addEventListener('click', () => {
+		const next = root.dataset.theme === 'dark' ? 'light' : 'dark';
+		const apply = () => {
+			root.dataset.theme = next;
+			try { localStorage.setItem('theme', next); } catch {}
+			sync();
+		};
+		if (document.startViewTransition && !matchMedia('(prefers-reduced-motion: reduce)').matches) document.startViewTransition(apply);
+		else apply();
+	});
+</script>

@@ -1,0 +1,9 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import { kinds } from '@i18n/ui';
+
+interface Props { post: CollectionEntry<'blog'> }
+const { kind, locale } = Astro.props.post.data;
+---
+
+{kind && <span class:list={['kind', `kind-${kind}`]}>{kinds[locale][kind]}</span>}

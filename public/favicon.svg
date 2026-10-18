@@ -1,46 +1,11 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<!-- Created with Inkscape (http://www.inkscape.org/) -->
-
-<svg
-   width="249.99998"
-   height="250.00002"
-   viewBox="0 0 66.145828 66.145837"
-   version="1.1"
-   id="svg5"
-   xmlns="http://www.w3.org/2000/svg"
-   xmlns:svg="http://www.w3.org/2000/svg">
-  <defs
-     id="defs2" />
-  <g
-     id="layer1">
-    <g
-       id="g9037"
-       transform="matrix(1.047892,0,0,1.0482256,-1.5898351,-2.1383085)"
-       style="stroke-width:0.954145">
-      <rect
-         style="fill:#46c09f;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:3.78676;stroke-dasharray:none;stroke-opacity:1;paint-order:markers stroke fill;stop-color:#000000"
-         id="rect8821-1"
-         width="33.318455"
-         height="31.885403"
-         x="3.9655771"
-         y="7.3443899"
-         ry="6.4487333" />
-      <rect
-         style="fill:#ffffff;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:3.78676;stroke-dasharray:none;stroke-opacity:1;paint-order:markers stroke fill;stop-color:#000000"
-         id="rect8821-1-2"
-         width="33.318455"
-         height="31.885403"
-         x="16.419327"
-         y="17.648565"
-         ry="6.4487333" />
-      <rect
-         style="fill:#e51ccf;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:3.78676;stroke-dasharray:none;stroke-opacity:1;paint-order:markers stroke fill;stop-color:#000000"
-         id="rect8821-1-7"
-         width="33.318455"
-         height="31.885403"
-         x="28.873075"
-         y="27.95274"
-         ry="6.4487333" />
-    </g>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <style>
+    .s { fill: #34508f; } .g { stroke: #f7f8fa; } .d { fill: #d9b46a; }
+    @media (prefers-color-scheme: dark) { .s { fill: #a5b3dc; } .g { stroke: #0b1020; } .d { fill: #8a6a2c; } }
+  </style>
+  <path class="s" d="M32 2L40.79 10.79H53.21V23.21L62 32L53.21 40.79V53.21H40.79L32 62L23.21 53.21H10.79V40.79L2 32L10.79 23.21V10.79H23.21Z"/>
+  <g transform="translate(32 32) scale(0.6) translate(-32 -33)">
+    <path class="g" d="M16 54V30H48V12H30V30" fill="none" stroke-width="6.5" stroke-linecap="square"/>
+    <rect class="d" x="36" y="18" width="6" height="6"/>
   </g>
 </svg>

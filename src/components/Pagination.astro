@@ -1,18 +1,14 @@
 ---
-// IMPORTS
-// Components
+import type { Lang } from '@types';
+import { labels } from '@i18n/ui';
 
-// FUNCTIONS & ACTIONS
-const { prevUrl, nextUrl } = Astro.props;
+interface Props { prevUrl?: string; nextUrl?: string; locale: Lang }
+const { prevUrl, nextUrl, locale } = Astro.props;
 ---
 
-<nav class="pagination">
-  {
-    (prevUrl || nextUrl) && (
-      <ul>
-        {prevUrl && <li><a href={prevUrl}>&larr;</a></li>}
-        {nextUrl && <li><a href={nextUrl}>&rarr;</a></li>}
-      </ul>
-    )
-  }
-</nav>
+{(prevUrl || nextUrl) && (
+	<nav class="pagination" aria-label={locale === 'ar' ? 'صفحات المقالات' : 'Post pages'}>
+		{prevUrl ? <a rel="prev" href={prevUrl}><span class="arrow back" aria-hidden="true">→</span> {labels[locale].newer}</a> : <span />}
+		{nextUrl && <a rel="next" href={nextUrl}>{labels[locale].older} <span class="arrow" aria-hidden="true">→</span></a>}
+	</nav>
+)}

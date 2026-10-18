@@ -1,50 +1,23 @@
 ---
-// IMPORTS
-import type { Multi } from "@types";
-import SimplePageLayout from "@layouts/SimplePageLayout.astro";
-import { defaultLang } from "@i18n/ui";
-import { site } from "@i18n/sections";
-
-// ACTIONS
-const locale: keyof Multi = Astro.currentLocale || defaultLang;
-const heroImage = "/blog-placeholder-1.jpg";
+import SimplePageLayout from '@layouts/SimplePageLayout.astro';
+import Portrait from '@components/Portrait.astro';
+import { site } from '@i18n/sections';
+import { labels } from '@i18n/ui';
+const locale = 'en';
 ---
 
-<SimplePageLayout
-  title={site.title[locale]}
-  description={site.description[locale]}
-  pageTitle="About"
-  locale={locale}
-  heroImage={heroImage}
->
+<SimplePageLayout title={site.title[locale]} description={site.description[locale]} pageTitle={labels[locale].about} locale={locale}>
+	<Portrait slot="margin" locale={locale} />
+	<p class="lead">{site.description[locale]}</p>
+	<p>I'm a Computer Engineering graduate from King Fahd University of Petroleum & Minerals (KFUPM), a software engineer, and an entrepreneur with a passion for building technology that makes a real difference.</p>
 
-  <p>This is the about page for the <strong>English</strong> language.</p>
+<p>My interests lie at the intersection of artificial intelligence, software engineering, and business. I believe that great technology starts with understanding real problems, not just finding ways to use the latest tools. This mindset shapes my approach to building products, where technical decisions are guided by the value they bring to people.</p>
 
-  <p>
-    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse et
-    risus quam. Ut elit tellus, consequat eu ornare sit amet, sagittis nec
-    mauris. <strong
-      >Etiam luctus venenatis condimentum. Cras congue ut mauris in rutrum.
-      Nulla congue bibendum posuere.</strong
-    > Suspendisse posuere, arcu in tempus elementum, augue ante rutrum est, vitae
-    dignissim dui nibh blandit enim. Duis malesuada sollicitudin sapien vel maximus.
-    Vestibulum dictum euismod tristique. In quis augue commodo risus placerat fringilla.
-  </p>
+<p>Through my experience in software development and co-founding an AI startup, I've had the opportunity to turn ideas into working products, face real technical and business challenges, and learn what it takes to bring a product to life.</p>
 
-  <p>
-    Ma laoreet, magna metus suscipit nisi, et semper purus ipsum vitae ligula.
-    <strong>Vestibulum ante ipsum primis in faucibus.</strong> Orci luctus et ultrices
-    posuere cubilia curae; Duis ultrices ligula nec purus vestibulum, at aliquet
-    justo congue.
-  </p>
+<p>Beyond building software, I enjoy exploring new technologies, understanding how businesses work, and learning from the experiences of others. I believe continuous learning, experimentation, and sharing knowledge are essential parts of personal and professional growth.</p>
 
-  <p>
-    <strong>Tec libero ipsum, cursus facili. Int porta facilisis.</strong> Cras placerat
-    ullamcorper purus, id varius nisi accumsan id. Integer in lorem at risus tempor
-    faucibus. Cras suscipit magna maximus, consequat leo quis, posuere ex. Integer
-    iaculis, dui vel dictum sodales, nibh orci fringilla lorem, tincidunt scelerisque
-    dui felis ut elit. Vestibulum euismod purus justo, non ultricies orci auctor
-    ut. Vestibulum id libero eget felis fermentum vehicula in imperdiet orci. In
-    tempor purus non eros euismod, non sodales risus blandit.
-  </p>
+<p>This blog is my personal space to share thoughts on <strong>AI and technology</strong>, explore ideas in <strong>business and entrepreneurship</strong>, and <strong>document my projects</strong>, including the decisions, challenges, mistakes, and lessons I've learned along the way.</p>
+	<h2>{labels[locale].skills}</h2>
+	<ul class="skills">{site.skills.map((skill) => <li>{skill}</li>)}</ul>
 </SimplePageLayout>

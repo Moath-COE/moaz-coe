@@ -1,43 +1,31 @@
 ---
-import MainNavLangs from "./MainNavLangs.astro";
-import HeaderLink from "./HeaderLink.astro";
-import { site } from "@i18n/sections";
-import { navLinks, listOfCollections } from "@i18n/ui";
-import { sanitizeRoutes } from "@i18n/utils";
+import type { Lang } from '@types';
+import MainNavLangs from './MainNavLangs.astro';
+import HeaderLink from './HeaderLink.astro';
+import Mark from './Mark.astro';
+import ThemeToggle from './ThemeToggle.astro';
+import { site } from '@i18n/sections';
+import { labels } from '@i18n/ui';
+import { localize } from '@i18n/utils';
 
-// ACTIONS
-// Get locale
+interface Props { locale: Lang }
 const { locale } = Astro.props;
-
-const links = navLinks.filter((link) => link.languages.includes(locale));
 ---
 
-<header>
-	<nav>
-		<div class="logoname">
-			<h2>
-				<a href={"/" + locale + "/"}>
-					{site.title[locale]}
-				</a>
-			</h2>
+<a class="skip-link" href="#content">{labels[locale].skip}</a>
+<header class="site-header">
+	<nav class="site-nav" aria-label={locale === 'ar' ? 'التنقل الرئيسي' : 'Main navigation'}>
+		<a class="brand" href={localize(locale)} aria-label={labels[locale].home}>
+			<Mark />
+			<span>{site.title[locale]}</span>
+		</a>
+		<div class="nav-links">
+			<HeaderLink href={localize(locale, 'blog')}>{labels[locale].blog}</HeaderLink>
+			<HeaderLink href={localize(locale, 'about')}>{labels[locale].about}</HeaderLink>
 		</div>
-		<div class="internal-links">
-			{
-				links.map((link) => (
-					<HeaderLink
-						href={
-							listOfCollections.includes(link.text.toLowerCase())
-								? sanitizeRoutes(`${link.href}/${locale}/`)
-								: sanitizeRoutes(`/${locale}/${link.href}`)
-						}
-					>
-						{link.text}
-					</HeaderLink>
-				))
-			}
-		</div>
-		<div class="language-picker">
+		<div class="nav-tools">
 			<MainNavLangs locale={locale} />
+			<ThemeToggle label={labels[locale].theme} />
 		</div>
 	</nav>
 </header>

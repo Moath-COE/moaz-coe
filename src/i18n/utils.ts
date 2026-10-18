@@ -1,49 +1,50 @@
-// IMPORTS
-import { languages } from './ui'
-import { routes } from './routes'
-import type { Multi } from "@types"
+import type { CollectionEntry } from 'astro:content';
+import type { Lang } from '@types';
+import { translatedPosts } from './routes';
 
-// FUNCTIONS
-
-// Function to get routes for all language versions of any given page.
-//  1. Define current path based on URL information
-//  2. Error checks
-//    a. Slug is undefined (should not happen): return empty string (force all entries in language picker to point to language's homepage)
-//    b. Slug is empty (probably a homepage): return empty string (all entries in picker should point to language's homepage)
-//  3. Check if slug is present in routes.ts
-//    a. YES (page url varies across languages): Return a dictionary with appropriate paths for all languages (object)
-//    b. NO (page url is same across languages). Return the slug (string).
-
-export function getRoutes(slug = ""): Multi | string {
-  
-  if (slug === undefined) {
-    console.log("Path sent to language picker is undefined.")
-    return ''
-  }
-
-  if (Object.keys(languages).includes(slug)) {
-    return ''
-  }
-
-  let match = -1
-
-  const allRoutes = Object.values(routes)
-  allRoutes.forEach((group,i) => Object.values(group).map((val) => {
-    return val === decodeURI(slug) ? match = i : ""
-  }))
-  
-  let group
-  match >= 0 ? group = allRoutes[match] : ""  
-
-  return group ? group : "--"
-
+export function localize(locale: Lang, path = ''): string {
+	const part = path.replace(/^\/+|\/+$/g, '');
+	const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+	return `${base}${locale === 'en' ? '/en' : ''}/${part}${part && part !== 'rss.xml' ? '/' : ''}`;
 }
 
-// Function to sanitise routes
-//  Ps. Automatically created routes sometimes end up having double slashes ("//").
-//  Easiest solution is to run any potentially problematic routes by this function.
-export function sanitizeRoutes(url: string): string {
-  let sanitizedUrl = url.replace("//", "/")
-  return sanitizedUrl
+export function publicAsset(path: string): string {
+	return `${import.meta.env.BASE_URL.replace(/\/$/, '')}/${path.replace(/^\//, '')}`;
 }
 
+export function postSlug(post: CollectionEntry<'blog'>): string {
+	return post.id.split('/').slice(1).join('/');
+}
+
+export function postUrl(post: CollectionEntry<'blog'>): string {
+	return localize(post.data.locale, `blog/${postSlug(post).split('/').map(encodeURIComponent).join('/')}`);
+}
+
+export function alternateUrl(
+	pathname: string,
+	from: Lang,
+	to: Lang,
+	posts: CollectionEntry<'blog'>[],
+): string {
+	const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+	const withoutBase = base && (pathname === base || pathname.startsWith(`${base}/`))
+		? pathname.slice(base.length)
+		: pathname;
+	const path = withoutBase.replace(/^\/en(?=\/|$)/, '').replace(/^\/+|\/+$/g, '');
+	if (!path) return localize(to);
+	if (path === 'about') return localize(to, 'about');
+	if (path === 'blog' || path.startsWith('blog/page/')) return localize(to, 'blog');
+	if (path.startsWith('tags/')) {
+		const tag = decodeURIComponent(path.split('/')[1] ?? '');
+		return posts.some((post) => post.data.locale === to && post.data.tags.includes(tag))
+			? localize(to, `tags/${encodeURIComponent(tag)}`)
+			: localize(to, 'blog');
+	}
+	if (path.startsWith('blog/')) {
+		const slug = decodeURIComponent(path.slice('blog/'.length));
+		const translated = translatedPosts.find((pair) => pair[from] === slug)?.[to] ?? slug;
+		const counterpart = posts.find((post) => post.data.locale === to && postSlug(post) === translated);
+		return counterpart ? postUrl(counterpart) : localize(to, 'blog');
+	}
+	return localize(to);
+}

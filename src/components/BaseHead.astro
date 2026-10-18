@@ -1,59 +1,55 @@
 ---
-// Import the global.css file here so that it is included on
-// all pages through the use of the <BaseHead /> component.
+import '@fontsource-variable/bricolage-grotesque/opsz.css';
+import '@fontsource-variable/reem-kufi';
+import '@fontsource-variable/ibm-plex-sans';
+import '@fontsource-variable/ibm-plex-sans/wght-italic.css';
+import '@fontsource/ibm-plex-sans-arabic/400.css';
+import '@fontsource/ibm-plex-sans-arabic/600.css';
+import '@fontsource/ibm-plex-mono/400.css';
 import '@styles/global.css';
-import { ogStrings } from "@i18n/ui"
+import type { Lang } from '@types';
+import { ogStrings } from '@i18n/ui';
+import { localize, publicAsset } from '@i18n/utils';
+import { site } from '@i18n/sections';
 
-// Actions
-// Type for props
 interface Props {
 	title: string;
 	description: string;
 	pageTitle?: string;
 	heroImage?: string;
-	locale?: string;
+	locale: Lang;
 }
 
-// Props
-const {title, description, pageTitle = "", heroImage = '/blog-placeholder-1.jpg', locale = "en_US" } = Astro.props;
-
-// Other
-const canonicalURL = new URL(Astro.url.pathname, Astro.site);
-
+const { title, description, pageTitle, heroImage, locale } = Astro.props;
+const fullTitle = pageTitle && pageTitle !== title ? `${pageTitle} · ${title}` : title;
+const canonicalURL = new URL(Astro.url.pathname.endsWith('/') ? Astro.url.pathname : `${Astro.url.pathname}/`, Astro.site);
+const imageURL = new URL(publicAsset(heroImage ?? site.photo), Astro.site);
 ---
 
-<!-- Global Metadata -->
 <meta charset="utf-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1" />
-<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-<meta name="generator" content={Astro.generator} />
-
-<!-- Font preloads -->
-<link rel="preload" href="/fonts/atkinson-regular.woff" as="font" type="font/woff" crossorigin />
-<link rel="preload" href="/fonts/atkinson-bold.woff" as="font" type="font/woff" crossorigin />
-
-<!-- Canonical URL -->
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="theme-color" content="#f7f8fa" media="(prefers-color-scheme: light)" />
+<meta name="theme-color" content="#0b1020" media="(prefers-color-scheme: dark)" />
+<meta name="color-scheme" content="light dark" />
+<script is:inline>
+	(() => {
+		let theme;
+		try { theme = localStorage.getItem('theme'); } catch {}
+		if (theme !== 'light' && theme !== 'dark') theme = matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+		document.documentElement.dataset.theme = theme;
+	})();
+</script>
+<link rel="icon" type="image/svg+xml" href={publicAsset('/favicon.svg')} />
 <link rel="canonical" href={canonicalURL} />
-
-<!-- Primary Meta Tags -->
-<title>{title}</title>
-<meta name="title" content={`${title}${pageTitle !== "" ? " > " : ""}${pageTitle}`} />
+<link rel="alternate" type="application/rss+xml" title={`${title} RSS`} href={localize(locale, 'rss.xml')} />
+<link rel="sitemap" href={publicAsset('/sitemap-index.xml')} />
+<title>{fullTitle}</title>
 <meta name="description" content={description} />
-
-<!-- Open Graph / Facebook -->
 <meta property="og:type" content="website" />
-<meta property="og:url" content={Astro.url} />
-<meta property="og:title" content={title} />
+<meta property="og:url" content={canonicalURL} />
+<meta property="og:title" content={fullTitle} />
 <meta property="og:description" content={description} />
-<meta property="og:locale" content={ogStrings[locale] || "en_US"} />
-<meta property="og:image" content={new URL(heroImage, Astro.url)} />
-
-<!-- Twitter -->
-<meta property="twitter:card" content="summary_large_image" />
-<meta property="twitter:url" content={Astro.url} />
-<meta property="twitter:title" content={title} />
-<meta property="twitter:description" content={description} />
-<meta property="twitter:image" content={new URL(heroImage, Astro.url)} />
-
-<!-- Sitemap -->
-<link rel="sitemap" href="./en/sitemap-index.xml" />
+<meta property="og:locale" content={ogStrings[locale]} />
+<meta property="og:image" content={imageURL} />
+<meta name="twitter:card" content={heroImage ? 'summary_large_image' : 'summary'} />
+<meta name="twitter:image" content={imageURL} />

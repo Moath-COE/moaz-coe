@@ -1,0 +1,16 @@
+---
+import type { Lang } from '@types';
+import { site } from '@i18n/sections';
+import { publicAsset } from '@i18n/utils';
+
+interface Props { locale: Lang; showName?: boolean; class?: string }
+const { locale, showName = true, class: className } = Astro.props;
+---
+
+<figure class:list={['portrait', className]}>
+	<img src={publicAsset(site.photo)} alt={site.author[locale]} width="556" height="556" loading="eager" decoding="async" />
+	<figcaption>
+		{showName && <strong>{site.author[locale]}</strong>}
+		<span class="meta">{site.role[locale]}</span>
+	</figcaption>
+</figure>

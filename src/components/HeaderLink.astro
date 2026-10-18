@@ -1,15 +1,12 @@
 ---
 import type { HTMLAttributes } from 'astro/types';
+import { localize } from '@i18n/utils';
 
 type Props = HTMLAttributes<'a'>;
-
-const { href, class: className, ...props } = Astro.props;
-
-const { pathname } = Astro.url;
-const subpath = pathname.match(/[^\/]+/g);
-const isActive = href === pathname || href === '/' + subpath?.[0];
+const { href, ...props } = Astro.props;
+const current = Astro.url.pathname;
+const url = typeof href === 'string' ? href : href?.toString() ?? '';
+const isActive = url === current || (url !== localize('ar') && url !== localize('en') && current.startsWith(url));
 ---
 
-<a href={href} class:list={[className, { active: isActive }]} {...props}>
-	<slot />
-</a>
+<a href={href} aria-current={isActive ? 'page' : undefined} {...props}><slot /></a>

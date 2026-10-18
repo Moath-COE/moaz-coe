@@ -1,0 +1,14 @@
+---
+// The site's seal: a square-Kufic meem (م), the initial of معاذ, inside an eight-pointed star medallion.
+interface Props { class?: string }
+const { class: className } = Astro.props;
+---
+
+<svg class:list={['mark', className]} viewBox="0 0 64 64" aria-hidden="true" focusable="false">
+	<path class="mark-star" d="M32 2L40.79 10.79H53.21V23.21L62 32L53.21 40.79V53.21H40.79L32 62L23.21 53.21H10.79V40.79L2 32L10.79 23.21V10.79H23.21Z" />
+	<path class="mark-ring" d="M32 5.5L39.76 13.26H50.74V24.24L58.5 32L50.74 39.76V50.74H39.76L32 58.5L24.24 50.74H13.26V39.76L5.5 32L13.26 24.24V13.26H24.24Z" fill="none" stroke-width="1.6" />
+	<g transform="translate(32 32) scale(0.58) translate(-32 -33)">
+		<path class="mark-glyph" d="M16 54V30H48V12H30V30" fill="none" stroke-width="6" stroke-linecap="square" />
+		<rect class="mark-dot" x="36" y="18" width="6" height="6" />
+	</g>
+</svg>

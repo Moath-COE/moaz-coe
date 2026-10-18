@@ -1,0 +1,50 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import type { Lang } from '@types';
+import BlogRollLayout from '@layouts/BlogRollLayout.astro';
+import CategoriesPreview from './CategoriesPreview.astro';
+import BlogEntryPreview from './BlogEntryPreview.astro';
+import Pagination from './Pagination.astro';
+import { labels, postCount } from '@i18n/ui';
+import { localize } from '@i18n/utils';
+import { groupByYear, pageSize, tagsFor } from '@lib/blog';
+
+interface Props {
+	locale: Lang;
+	posts: CollectionEntry<'blog'>[];
+	allPosts: CollectionEntry<'blog'>[];
+	page?: number;
+	tag?: string;
+}
+const { locale, posts, allPosts, page = 1, tag } = Astro.props;
+const section = tag ? `${labels[locale].tags} / ${tag}` : labels[locale].blog;
+const eyebrow = tag ? `${labels[locale].tags} · ${postCount(locale, posts.length)}` : postCount(locale, posts.length);
+const heading = tag ?? labels[locale].blog;
+const year = (value: number) => new Intl.NumberFormat(locale, { useGrouping: false }).format(value);
+const listPath = tag ? `tags/${encodeURIComponent(tag)}` : 'blog';
+const pageUrl = (number: number) => localize(locale, number === 1 ? listPath : tag ? `${listPath}/${number}` : `${listPath}/page/${number}`);
+const visible = posts.slice((page - 1) * pageSize, page * pageSize);
+---
+
+<BlogRollLayout locale={locale} section={section}>
+	<section class="listing layout">
+		<header class="page-head">
+			<p class="eyebrow">{eyebrow}</p>
+			<h1>{heading}</h1>
+		</header>
+		<aside class="margin listing-aside">
+			<CategoriesPreview tags={tagsFor(allPosts)} locale={locale} current={tag} />
+		</aside>
+		<div class="wide">
+			{visible.length ? groupByYear(visible).map(([y, group]) => (
+				<section class="year-group" aria-label={year(y)}>
+					<h2 class="year"><span>{year(y)}</span></h2>
+					<ul class="entries">{group.map((post) => <BlogEntryPreview post={post} dateStyle="short" />)}</ul>
+				</section>
+			)) : (
+				<p class="empty-state">{labels[locale].empty}</p>
+			)}
+			<Pagination locale={locale} prevUrl={page > 1 ? pageUrl(page - 1) : undefined} nextUrl={posts.length > page * pageSize ? pageUrl(page + 1) : undefined} />
+		</div>
+	</section>
+</BlogRollLayout>

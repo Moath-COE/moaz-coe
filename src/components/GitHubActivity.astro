@@ -1,0 +1,87 @@
+---
+import type { Lang } from '@types';
+import { site } from '@i18n/sections';
+import { contributions, labels } from '@i18n/ui';
+import { githubProfile } from '@lib/github';
+
+interface Props { locale: Lang }
+const { locale } = Astro.props;
+const login = site.github;
+const profile = login ? await githubProfile(login) : undefined;
+
+// On small screens only the most recent weeks are shown.
+const recentWeeks = 26;
+const weeks = profile?.weeks ?? [];
+const column = (index: number) => `grid-column: ${index - weeks.length - 1} / span 1`;
+const monthName = new Intl.DateTimeFormat(locale, { month: 'short', timeZone: 'UTC' });
+const dayName = new Intl.DateTimeFormat(locale, { month: 'long', day: 'numeric', year: 'numeric', timeZone: 'UTC' });
+const months = weeks.map((week, i) => {
+	const month = new Date(week[0].date).getUTCMonth();
+	const previous = i > 0 ? new Date(weeks[i - 1][0].date).getUTCMonth() : month;
+	return i > 0 && month !== previous ? monthName.format(new Date(week[0].date)) : undefined;
+});
+const summary = profile && (locale === 'ar'
+	? `${contributions(locale, profile.total)} خلال العام الماضي`
+	: `${contributions(locale, profile.total)} in the last year`);
+const number = new Intl.NumberFormat(locale);
+---
+
+{profile && (
+	<section class="github layout" aria-labelledby="github-heading">
+		<div class="margin">
+			<h2 class="eyebrow" id="github-heading">{labels[locale].github}</h2>
+			<a class="more-link" href={profile.url} lang="en" dir="ltr">@{login} <span aria-hidden="true">↗</span></a>
+		</div>
+		<div class="github-body">
+			<figure class="heatmap">
+				<div class="heatmap-grid" style={`--weeks: ${weeks.length}; --recent: ${recentWeeks}`} role="img" aria-label={summary}>
+					{months.map((label, i) => label && (
+						<span class:list={['heatmap-month', { old: i < weeks.length - recentWeeks }]} style={`${column(i)}; grid-row: 1`} aria-hidden="true">{label}</span>
+					))}
+					{weeks.map((week, i) => week.map((day) => (
+						<span
+							class:list={['heatmap-day', { old: i < weeks.length - recentWeeks }]}
+							data-level={day.level}
+							style={`${column(i)}; grid-row: ${new Date(day.date).getUTCDay() + 2}`}
+							title={`${contributions(locale, day.count)} · ${dayName.format(new Date(day.date))}`}
+						/>
+					)))}
+				</div>
+				<figcaption class="meta heatmap-caption">
+					<span>{summary}</span>
+					<span class="heatmap-legend" aria-hidden="true">
+						{labels[locale].less}
+						{[0, 1, 2, 3, 4].map((level) => <span class="heatmap-day" data-level={level} />)}
+						{labels[locale].more}
+					</span>
+				</figcaption>
+			</figure>
+
+			{profile.pinned.length > 0 && (
+				<>
+					<h3 class="eyebrow github-subheading">{labels[locale].pinned}</h3>
+					<ul class="repos">
+						{profile.pinned.map((repo) => (
+							<li>
+								<a class="repo" href={repo.url} lang="en" dir="ltr">
+									<span class="repo-name">{repo.owner !== login && <span class="repo-owner">{repo.owner}/</span>}{repo.name}</span>
+									{repo.description && <span class="repo-description">{repo.description}</span>}
+									<span class="meta repo-meta">
+										{repo.language && <span class="repo-language">{repo.language}</span>}
+										{repo.stars > 0 && (
+											<span class="repo-stars">
+												<svg viewBox="0 0 40 40" aria-hidden="true"><path d="M20 0L25.86 5.86H34.14V14.14L40 20L34.14 25.86V34.14H25.86L20 40L14.14 34.14H5.86V25.86L0 20L5.86 14.14V5.86H14.14Z" /></svg>
+												{number.format(repo.stars)}
+											</span>
+										)}
+									</span>
+									<span class="repo-arrow" aria-hidden="true">↗</span>
+								</a>
+							</li>
+						))}
+					</ul>
+				</>
+			)}
+		</div>
+	</section>
+)}

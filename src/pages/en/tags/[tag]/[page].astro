@@ -1,0 +1,18 @@
+---
+import BlogListing from '@components/BlogListing.astro';
+import { pageSize, publishedPosts, tagsFor } from '@lib/blog';
+
+export async function getStaticPaths() {
+	const posts = await publishedPosts('en');
+	return tagsFor(posts).flatMap((tag) =>
+		Array.from({ length: Math.max(0, Math.ceil(posts.filter((post) => post.data.tags.includes(tag)).length / pageSize) - 1) }, (_, i) => ({
+			params: { tag, page: String(i + 2) },
+			props: { posts, tag },
+		})),
+	);
+}
+
+const { posts, tag } = Astro.props;
+---
+
+<BlogListing locale="en" posts={posts.filter((post) => post.data.tags.includes(tag))} allPosts={posts} tag={tag} page={Number(Astro.params.page)} />

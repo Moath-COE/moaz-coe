@@ -1,19 +1,12 @@
 ---
-// IMPORTS
-import BaseLayout from "@layouts/BaseLayout.astro";
-import { site } from "@i18n/sections";
+import type { Lang } from '@types';
+import BaseLayout from './BaseLayout.astro';
+import { site } from '@i18n/sections';
 
-
-// ACTIONS
-// Get props from child component
+interface Props { locale: Lang; section: string }
 const { locale, section } = Astro.props;
 ---
 
-<BaseLayout
-	title={site.title[locale]}
-	description={site.description[locale]}
-	pageTitle={section}
-	locale={locale}
->
+<BaseLayout title={site.title[locale]} description={site.description[locale]} pageTitle={section} locale={locale}>
 	<slot />
 </BaseLayout>

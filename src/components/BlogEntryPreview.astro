@@ -1,18 +1,26 @@
 ---
-// IMPORTS
-// Components
-import FormattedDate from "@components/FormattedDate.astro";
+import type { CollectionEntry } from 'astro:content';
+import FormattedDate from './FormattedDate.astro';
+import KindBadge from './KindBadge.astro';
+import { postUrl } from '@i18n/utils';
+import { readingTime } from '@i18n/ui';
+import { readingMinutes } from '@lib/blog';
 
-// FUNCTIONS & ACTIONS
-const { post } = Astro.props;
+interface Props { post: CollectionEntry<'blog'>; dateStyle?: 'long' | 'short' }
+const { post, dateStyle = 'long' } = Astro.props;
+const { locale, title, description, pubDate } = post.data;
 ---
 
-<li>
-	<a href={`/${post.collection}/${post.slug}/`}>
-		<img width={720} height={360} src={post.data.heroImage} alt="" />
-		<h2 class="title">{post.data.title}</h2>
-		<p class="date">
-			<FormattedDate date={post.data.pubDate} />
-		</p>
+<li class="entry">
+	<a href={postUrl(post)}>
+		<span class="entry-text">
+			<span class="entry-title">{title}</span>
+			<span class="entry-description">{description}</span>
+		</span>
+		<span class="meta entry-meta">
+			<KindBadge post={post} />
+			<FormattedDate date={pubDate} locale={locale} format={dateStyle} />
+			<span>{readingTime(locale, readingMinutes(post))}</span>
+		</span>
 	</a>
 </li>

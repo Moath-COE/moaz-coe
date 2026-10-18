@@ -1,5 +1,5 @@
 {
-  "name": "jbolns-github-io",
+  "name": "bilingual-blog",
   "type": "module",
   "version": "0.0.1",
   "scripts": {
@@ -14,7 +14,13 @@
     "@astrojs/mdx": "^4.3.0",
     "@astrojs/rss": "^4.0.11",
     "@astrojs/sitemap": "^3.4.0",
+    "@fontsource-variable/bricolage-grotesque": "^5.3.0",
+    "@fontsource-variable/ibm-plex-sans": "^5.3.0",
+    "@fontsource-variable/reem-kufi": "^5.3.0",
+    "@fontsource/ibm-plex-mono": "^5.3.0",
+    "@fontsource/ibm-plex-sans-arabic": "^5.3.0",
     "astro": "^5.8.1",
     "typescript": "^5.6.2"
-  }
+  },
+  "packageManager": "pnpm@12.5.1"
 }

@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 300" font-family="IBM Plex Mono, ui-monospace, monospace" font-size="15">
+  <style>
+    .card { fill: #ffffff; stroke: #c9d0dd; }
+    .accent { fill: #34508f; }
+    .label { fill: #0e1528; }
+    .muted { fill: #525c73; font-size: 12px; }
+    .flow { stroke: #34508f; stroke-width: 1.5; fill: none; marker-end: url(#arrow); }
+    .dash { stroke: #b08a45; stroke-width: 1.5; stroke-dasharray: 5 5; fill: none; }
+  </style>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10Z" fill="#34508f"/></marker>
+  </defs>
+  <rect width="960" height="300" rx="10" fill="#eef1f6"/>
+  <g>
+    <rect class="card" x="30" y="105" width="150" height="70" rx="6"/>
+    <text class="label" x="105" y="138" text-anchor="middle">Query</text>
+    <text class="muted" x="105" y="158" text-anchor="middle">user question</text>
+  </g>
+  <g>
+    <rect class="card" x="230" y="105" width="150" height="70" rx="6"/>
+    <text class="label" x="305" y="138" text-anchor="middle">Retriever</text>
+    <text class="muted" x="305" y="158" text-anchor="middle">hybrid search</text>
+  </g>
+  <g>
+    <rect class="card" x="430" y="105" width="150" height="70" rx="6"/>
+    <text class="label" x="505" y="138" text-anchor="middle">Reranker</text>
+    <text class="muted" x="505" y="158" text-anchor="middle">top 5 of 50</text>
+  </g>
+  <g>
+    <rect class="card" x="630" y="105" width="150" height="70" rx="6"/>
+    <rect class="accent" x="630" y="105" width="4" height="70"/>
+    <text class="label" x="705" y="138" text-anchor="middle">LLM</text>
+    <text class="muted" x="705" y="158" text-anchor="middle">grounded answer</text>
+  </g>
+  <g>
+    <rect class="card" x="830" y="115" width="100" height="50" rx="6"/>
+    <text class="label" x="880" y="145" text-anchor="middle">Answer</text>
+  </g>
+  <g>
+    <rect class="card" x="230" y="225" width="150" height="50" rx="6"/>
+    <text class="label" x="305" y="255" text-anchor="middle">Vector store</text>
+  </g>
+  <g>
+    <rect class="card" x="630" y="25" width="150" height="50" rx="6"/>
+    <text class="label" x="705" y="55" text-anchor="middle">Eval set</text>
+  </g>
+  <path class="flow" d="M180 140H226"/>
+  <path class="flow" d="M380 140H426"/>
+  <path class="flow" d="M580 140H626"/>
+  <path class="flow" d="M780 140H826"/>
+  <path class="flow" d="M305 225V179"/>
+  <path class="dash" d="M705 75V105M630 50H505V105"/>
+</svg>

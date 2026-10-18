@@ -1,0 +1,24 @@
+---
+import { site } from '@i18n/sections';
+import { socialIcons, type SocialNetwork } from '@lib/social-icons';
+
+interface Props { variant?: 'labels' | 'icons'; label: string }
+const { variant = 'labels', label } = Astro.props;
+const names: Record<SocialNetwork, string> = { linkedin: 'LinkedIn', github: 'GitHub', youtube: 'YouTube', x: 'X' };
+const links = (Object.keys(names) as SocialNetwork[])
+	.map((network) => ({ network, name: names[network], url: site.social[network] }))
+	.filter((link): link is typeof link & { url: string } => Boolean(link.url));
+---
+
+{links.length > 0 && (
+	<ul class:list={['social', `social-${variant}`]} aria-label={label}>
+		{links.map(({ network, name, url }) => (
+			<li>
+				<a href={url} rel="me noopener" aria-label={variant === 'icons' ? name : undefined} title={variant === 'icons' ? name : undefined}>
+					<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d={socialIcons[network]} /></svg>
+					{variant === 'labels' && <span lang="en">{name}</span>}
+				</a>
+			</li>
+		))}
+	</ul>
+)}

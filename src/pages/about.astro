@@ -1,0 +1,23 @@
+---
+import SimplePageLayout from '@layouts/SimplePageLayout.astro';
+import Portrait from '@components/Portrait.astro';
+import { site } from '@i18n/sections';
+import { labels } from '@i18n/ui';
+const locale = 'ar';
+---
+
+<SimplePageLayout title={site.title[locale]} description={site.description[locale]} pageTitle={labels[locale].about} locale={locale}>
+	<Portrait slot="margin" locale={locale} />
+	<p class="lead">{site.description[locale]}</p>
+	<p>أنا خريج هندسة الحاسب من جامعة الملك فهد للبترول والمعادن، ومهندس برمجيات مهتم بريادة الأعمال وبناء منتجات تقنية تقدم قيمة حقيقية للناس.</p>
+
+  <p>تتركز اهتماماتي في الذكاء الاصطناعي وهندسة البرمجيات والأعمال. أؤمن أن بناء المنتجات الناجحة يبدأ بفهم المشاكل واحتياجات الناس، وليس بمجرد استخدام أحدث التقنيات. لذلك أهتم بالجانب التقني والتجاري معًا، وأسعى لفهم كيف يمكن تحويل الأفكار إلى حلول عملية ومفيدة.</p>
+
+  <p>من خلال تجربتي في تطوير البرمجيات والمشاركة في تأسيس مشروع ناشئ في مجال الذكاء الاصطناعي، أتيحت لي الفرصة للعمل على تحويل الأفكار إلى منتجات حقيقية، ومواجهة تحديات تقنية وتجارية، والتعلم من التجربة والخطأ.</p>
+
+  <p>إلى جانب البرمجة، أحب استكشاف التقنيات الجديدة وفهم عالم الأعمال والشركات الناشئة، وأؤمن بأهمية التعلم المستمر والتجربة ومشاركة المعرفة مع الآخرين.</p>
+
+  <p>هذه المدونة مساحتي الشخصية لمشاركة أفكاري وما أتعلمه عن <strong>الذكاء الاصطناعي والتقنية</strong>، ومناقشة مواضيع في <strong>الأعمال وريادة الأعمال</strong>، بالإضافة إلى <strong>توثيق مشاريعي</strong> والقرارات والتحديات والأخطاء والدروس التي أتعلمها خلال الرحلة.</p>
+	<h2>{labels[locale].skills}</h2>
+	<ul class="skills">{site.skills.map((skill) => <li>{skill}</li>)}</ul>
+</SimplePageLayout>

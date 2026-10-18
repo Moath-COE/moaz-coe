@@ -1,22 +1,11 @@
 ---
-import type { Multi } from "@types";
-import { defaultLang } from "@i18n/ui";
+import type { Lang } from '@types';
 
-interface Props {
-	date: Date;
-}
-
-const locale: keyof Multi = Astro.currentLocale || defaultLang;
-const { date } = Astro.props;
-
+interface Props { date: Date; locale: Lang; format?: 'long' | 'short' }
+const { date, locale, format = 'long' } = Astro.props;
+const options: Intl.DateTimeFormatOptions = format === 'long'
+	? { year: 'numeric', month: 'long', day: 'numeric', timeZone: 'UTC' }
+	: { month: 'long', day: 'numeric', timeZone: 'UTC' };
 ---
 
-<time datetime={date.toISOString()}>
-	{
-		date.toLocaleDateString(locale, {
-			year: 'numeric',
-			month: 'short',
-			day: 'numeric',
-		})
-	}
-</time>
+<time datetime={date.toISOString()}>{date.toLocaleDateString(locale, options)}</time>

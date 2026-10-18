@@ -1,0 +1,17 @@
+---
+import BlogListing from '@components/BlogListing.astro';
+import { pageSize, publishedPosts } from '@lib/blog';
+
+export async function getStaticPaths() {
+	const posts = await publishedPosts('ar');
+	return Array.from({ length: Math.max(0, Math.ceil(posts.length / pageSize) - 1) }, (_, i) => ({
+		params: { page: String(i + 2) },
+		props: { posts },
+	}));
+}
+
+const { posts } = Astro.props;
+const page = Number(Astro.params.page);
+---
+
+<BlogListing locale="ar" posts={posts} allPosts={posts} page={page} />

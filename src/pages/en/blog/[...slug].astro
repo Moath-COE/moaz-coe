@@ -1,0 +1,18 @@
+---
+import { render } from 'astro:content';
+import BlogPostLayout from '@layouts/BlogPostLayout.astro';
+import { publishedPosts } from '@lib/blog';
+import { postSlug } from '@i18n/utils';
+
+export async function getStaticPaths() {
+	return (await publishedPosts('en')).map((post) => ({
+		params: { slug: postSlug(post) },
+		props: { post },
+	}));
+}
+
+const { post } = Astro.props;
+const { Content, headings } = await render(post);
+---
+
+<BlogPostLayout post={post} headings={headings}><Content /></BlogPostLayout>

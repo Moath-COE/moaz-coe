@@ -1,0 +1,17 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+import Mark from '@components/Mark.astro';
+import { site } from '@i18n/sections';
+import { labels } from '@i18n/ui';
+import { localize } from '@i18n/utils';
+---
+
+<BaseLayout title={site.title.ar} description={site.description.ar} pageTitle={labels.ar.notFound} locale="ar">
+	<section class="not-found">
+		<Mark class="not-found-mark" />
+		<p class="eyebrow">404</p>
+		<h1>{labels.ar.notFound}</h1>
+		<p>{labels.ar.notFoundText} <a href={localize('ar')}>{labels.ar.home}</a></p>
+		<p lang="en" dir="ltr">{labels.en.notFoundText} <a href={localize('en')}>{labels.en.home}</a></p>
+	</section>
+</BaseLayout>

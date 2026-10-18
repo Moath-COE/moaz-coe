@@ -1,36 +1,98 @@
 ---
-// IMPORTS
-import BaseLayout from "@layouts/BaseLayout.astro";
-import FormattedDate from "@components/FormattedDate.astro";
-import { site } from "@i18n/sections";
+import type { CollectionEntry } from 'astro:content';
+import type { MarkdownHeading } from 'astro';
+import BaseLayout from './BaseLayout.astro';
+import FormattedDate from '@components/FormattedDate.astro';
+import CategoriesPreview from '@components/CategoriesPreview.astro';
+import Ornament from '@components/Ornament.astro';
+import KindBadge from '@components/KindBadge.astro';
+import { labels, readingTime } from '@i18n/ui';
+import { site } from '@i18n/sections';
+import { postUrl, publicAsset } from '@i18n/utils';
+import { publishedPosts, readingMinutes } from '@lib/blog';
 
-// ACTIONS
-// Get props, incl. locale
-const { title, description, locale, pubDate, updatedDate, heroImage } =
-	Astro.props;
+interface Props { post: CollectionEntry<'blog'>; headings?: MarkdownHeading[] }
+const { post, headings = [] } = Astro.props;
+const { title, description, locale, pubDate, updatedDate, heroImage, tags } = post.data;
+const outline = headings.filter((heading) => (heading.depth === 2 || heading.depth === 3) && heading.slug !== 'footnote-label');
+const posts = await publishedPosts(locale);
+const index = posts.findIndex((entry) => entry.id === post.id);
+const newer = posts[index - 1];
+const older = posts[index + 1];
 ---
 
-<BaseLayout
-	title={site.title[locale]}
-	description={description}
-	pageTitle={title}
-	locale={locale}
-	heroImage={heroImage}
->
-	<article class="blogpost">
-		
-		<div class="hero-image">
-			{heroImage && <img width={1020} height={510} src={heroImage} alt="" />}
-		</div>
-
-		<div class="prose">
-			<div class="title">
-				<div class="date">
-					<FormattedDate date={updatedDate ? updatedDate : pubDate} />
-				</div>
-				<h1>{title}</h1>
+<BaseLayout title={site.title[locale]} description={description} pageTitle={title} locale={locale} heroImage={heroImage}>
+	<div class="reading-progress" aria-hidden="true"></div>
+	<article class="post layout">
+		<header class="post-header">
+			<div class="margin meta meta-stack">
+				<KindBadge post={post} />
+				<FormattedDate date={pubDate} locale={locale} />
+				<span>{readingTime(locale, readingMinutes(post))}</span>
+				{updatedDate && <span>{labels[locale].updated} <FormattedDate date={updatedDate} locale={locale} /></span>}
 			</div>
-			<slot />
-		</div>
+			<div class="wide">
+				<h1>{title}</h1>
+				<p class="post-description">{description}</p>
+				{heroImage && <img class="hero-image" src={publicAsset(heroImage)} alt="" />}
+			</div>
+		</header>
+		<div class="prose" data-copy={labels[locale].copy} data-copied={labels[locale].copied}><slot /></div>
+		<aside class="margin post-aside">
+			{outline.length > 1 && (
+				<nav class="toc" aria-labelledby="toc-heading">
+					<h2 class="eyebrow" id="toc-heading">{labels[locale].contents}</h2>
+					<ol>
+						{outline.map((heading) => <li class={`depth-${heading.depth}`}><a href={`#${heading.slug}`}>{heading.text}</a></li>)}
+					</ol>
+				</nav>
+			)}
+			<CategoriesPreview tags={tags} locale={locale} />
+		</aside>
+		<footer class="post-footer">
+			<Ornament />
+			{(newer || older) && (
+				<nav class="post-nav" aria-label={locale === 'ar' ? 'مقالات أخرى' : 'More posts'}>
+					{newer ? (
+						<a href={postUrl(newer)} rel="prev">
+							<span class="meta"><span class="arrow back" aria-hidden="true">→</span> {labels[locale].newer}</span>
+							<span class="post-nav-title">{newer.data.title}</span>
+						</a>
+					) : <span />}
+					{older && (
+						<a href={postUrl(older)} rel="next" class="older">
+							<span class="meta">{labels[locale].older} <span class="arrow" aria-hidden="true">→</span></span>
+							<span class="post-nav-title">{older.data.title}</span>
+						</a>
+					)}
+				</nav>
+			)}
+		</footer>
 	</article>
 </BaseLayout>
+
+<script>
+	// Give each code block a toolbar with its language and a copy button.
+	document.querySelectorAll<HTMLPreElement>('.prose pre.astro-code').forEach((pre) => {
+		const prose = pre.closest<HTMLElement>('.prose');
+		const block = document.createElement('div');
+		block.className = 'code-block wide';
+		const bar = document.createElement('div');
+		bar.className = 'code-bar';
+		const language = document.createElement('span');
+		language.textContent = pre.dataset.language && pre.dataset.language !== 'plaintext' ? pre.dataset.language : 'text';
+		const button = document.createElement('button');
+		button.type = 'button';
+		button.textContent = prose?.dataset.copy ?? 'Copy';
+		button.addEventListener('click', async () => {
+			try {
+				await navigator.clipboard.writeText(pre.innerText);
+				button.textContent = prose?.dataset.copied ?? 'Copied';
+				setTimeout(() => (button.textContent = prose?.dataset.copy ?? 'Copy'), 1600);
+			} catch {}
+		});
+		bar.append(language, button);
+		pre.replaceWith(block);
+		block.append(bar, pre);
+	});
+</script>

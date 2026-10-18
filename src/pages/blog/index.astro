@@ -1,0 +1,8 @@
+---
+import BlogListing from '@components/BlogListing.astro';
+import { publishedPosts } from '@lib/blog';
+const locale = 'ar';
+const posts = await publishedPosts(locale);
+---
+
+<BlogListing locale={locale} posts={posts} allPosts={posts} />
