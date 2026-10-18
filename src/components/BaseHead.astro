@@ -7,6 +7,8 @@ import '@fontsource/ibm-plex-sans-arabic/400.css';
 import '@fontsource/ibm-plex-sans-arabic/600.css';
 import '@fontsource/ibm-plex-mono/400.css';
 import '@styles/global.css';
+import type { ImageMetadata } from 'astro';
+import { getImage } from 'astro:assets';
 import type { Lang } from '@types';
 import { ogStrings } from '@i18n/ui';
 import { localize, publicAsset } from '@i18n/utils';
@@ -16,14 +18,16 @@ interface Props {
 	title: string;
 	description: string;
 	pageTitle?: string;
-	heroImage?: string;
+	heroImage?: ImageMetadata;
 	locale: Lang;
 }
 
 const { title, description, pageTitle, heroImage, locale } = Astro.props;
 const fullTitle = pageTitle && pageTitle !== title ? `${pageTitle} · ${title}` : title;
 const canonicalURL = new URL(Astro.url.pathname.endsWith('/') ? Astro.url.pathname : `${Astro.url.pathname}/`, Astro.site);
-const imageURL = new URL(publicAsset(heroImage ?? site.photo), Astro.site);
+// Social previews get a 1200px JPEG of the hero image, which every platform accepts.
+const ogImage = heroImage && (await getImage({ src: heroImage, width: 1200, format: 'jpg' })).src;
+const imageURL = new URL(ogImage ?? publicAsset(site.photo), Astro.site);
 ---
 
 <meta charset="utf-8" />

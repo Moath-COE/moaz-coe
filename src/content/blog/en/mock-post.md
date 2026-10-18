@@ -4,7 +4,7 @@ description: "A sample case study that uses every element a post can contain, so
 locale: en
 pubDate: 2026-10-14
 updatedDate: 2026-10-16
-heroImage: "/images/mock/hero.jpg"
+heroImage: "../_assets/mock/hero.jpg"
 kind: project
 tags: ["RAG", "Case study", "Mock"]
 draft: true
@@ -36,10 +36,7 @@ We agreed on three measurable goals before writing any code:
 
 ## Architecture
 
-<figure>
-  <img src="/images/mock/pipeline.svg" alt="Pipeline: query to retriever to reranker to LLM to answer, with a vector store feeding the retriever and an eval set checking the reranker and LLM" />
-  <figcaption>Figure 1. The request path. The evaluation set checks both the reranker and the final answer.</figcaption>
-</figure>
+![Pipeline: query to retriever to reranker to LLM to answer, with a vector store feeding the retriever and an eval set checking the reranker and LLM](../_assets/mock/pipeline.svg "Figure 1. The request path. The evaluation set checks both the reranker and the final answer.")
 
 Retrieval is hybrid: keyword search catches product names and error codes, while embeddings catch paraphrases. A reranker then keeps the five best passages out of fifty.
 
@@ -88,7 +85,7 @@ After six weeks in production:
 
 The business case came down to one line: the assistant cost less per month than a single additional support hire, and it answered at night.[^1]
 
-![The cover image again, shown here as a standard Markdown image inside the text column.](/images/mock/hero.jpg)
+![The cover image again, shown here as a standard Markdown image inside the text column.](../_assets/mock/hero.jpg)
 
 ---
 

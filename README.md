@@ -6,12 +6,31 @@ A minimal, bilingual Astro blog for writing in Arabic and English, styled after 
 
 1. Install dependencies with `pnpm install` and run `pnpm dev`.
 2. Copy an existing post in `src/content/blog/ar/` or `src/content/blog/en/` (for example `hakamony.md`) to a descriptive filename in the same folder, such as `my-first-post.md`. `mock-post.md` shows every formatting element available. The filename becomes the post's URL: `/blog/my-first-post/` or `/en/blog/my-first-post/`.
-3. Edit the frontmatter and write below the second `---`. Set `pubDate` to your publication date in `YYYY-MM-DD` format. Keep `locale: ar` or `locale: en` matched to the folder. Set `tags: []` or add topic names (e.g. `tags: ['Writing']`). Optionally set `kind: engineering`, `kind: business` or `kind: project` to show an Engineering / Business / Case study badge. `heroImage` is optional; put an image under `public/images/` and use a path like `/images/photo.jpg`.
+3. Edit the frontmatter and write below the second `---`. Set `pubDate` to your publication date in `YYYY-MM-DD` format. Keep `locale: ar` or `locale: en` matched to the folder. Set `tags: []` or add topic names (e.g. `tags: ['Writing']`). Optionally set `kind: engineering`, `kind: business` or `kind: project` to show an Engineering / Business / Case study badge. `heroImage` is optional; see [Images](#images).
 4. Keep `draft: true` while working. Change it to `draft: false` to publish. Drafts never appear on the site, in tags, or in RSS, even during development.
 
 You can write an article in only one language. For posts translated under the **same filename**, the language switcher links directly to the matching article. For different translated filenames, add a mapping to `src/i18n/routes.ts`. Without a translation, the switcher takes readers to the other language's blog index.
 
 Edit your intro and About content in `src/pages/index.astro`, `src/pages/en/index.astro`, `src/pages/about.astro`, and `src/pages/en/about.astro`. Edit navigation and translated interface strings in `src/i18n/ui.ts`.
+
+## Images
+
+Keep post images in `src/content/blog/_assets/`, in a folder per post (e.g. `_assets/my-post/`). Both language versions of a post can use the same files. Link them with a path relative to the post:
+
+- Cover image, in the frontmatter: `heroImage: ../_assets/my-post/cover.jpg`. It is shown at the top of the post and used as the preview when the link is shared. About 1600×800 works best.
+- In the text: `![What the image shows](../_assets/my-post/screen.png)`.
+- With a caption, as a wide figure: `![What the image shows](../_assets/my-post/diagram.svg "Figure 1. The caption.")`.
+
+The build resizes these images and converts them to WebP, so you can add full-size screenshots and photos. Files in `public/` are served as they are, without optimization; use it only for files that need a fixed URL, such as the favicon or your photo.
+
+## Writing in Obsidian
+
+`src/content/blog` is set up as an [Obsidian](https://obsidian.md) vault: in Obsidian, choose **Open folder as vault** and pick that folder. The shared settings in `.obsidian/app.json` already make Obsidian write standard Markdown links with relative paths (instead of `[[wikilinks]]`) and save pasted or dropped images to `_assets/`. Move them into the post's folder afterwards; Obsidian updates the link.
+
+- **New posts:** enable the core **Templates** plugin and insert `_templates/post.md` (the templates folder is already set). Name the file in kebab-case, since it becomes the URL.
+- **Image names:** pasted screenshots are named like `Pasted image 2026….png`. Rename them to something descriptive, or use the "Paste image rename" community plugin.
+- **Obsidian-only syntax** doesn't render on the site: wikilinks, embeds (`![[…]]`), callouts (`> [!note]`), `==highlights==` (use `<mark>`) and `%%comments%%` (use `<!-- -->`).
+- Your personal Obsidian state (open tabs, plugins, theme) stays out of git; only `app.json` and `templates.json` are committed.
 
 ## Configuration
 
@@ -29,8 +48,7 @@ The site deploys to GitHub Pages at https://moaz-coe.com from the `Moath-COE/moa
 
 - In the repository's **Settings → Pages**, the source must be **GitHub Actions** and the custom domain `moaz-coe.com` (also kept in `public/CNAME`).
 - The site address defaults to `https://moaz-coe.com/` in `astro.config.mjs`. The optional Actions variables `SITE_URL` and `SITE_BASE` override it, e.g. to serve from `https://moath-coe.github.io/repository/` (`SITE_URL=https://moath-coe.github.io`, `SITE_BASE=/repository`).
-- DNS is managed in Cloudflare and needs no changes. If an old version still shows after a deploy, purge the Cloudflare cache.
-- Images written inside a post body as `/images/...` do not get `SITE_BASE` applied, so keep the site at the domain root (the default) or use `heroImage` for images.
+- DNS is managed in Cloudflare: four `A` records (and `AAAA` records) for `@` pointing at GitHub Pages, and a `CNAME` for `www` to `moath-coe.github.io`. Keep them on **DNS only** (grey cloud); with Cloudflare's proxy on, GitHub can't issue the HTTPS certificate.
 
 See the [Astro GitHub Pages guide](https://docs.astro.build/en/guides/deploy/github/) for more.
 

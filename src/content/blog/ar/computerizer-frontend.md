@@ -67,7 +67,7 @@ const fetchRecents = async () => {
 - **إعادة الكتابة تحتاج خط نهاية.** أعطانا الانتقال إلى Next.js أساسًا أفضل، لكنه أعاد التقدم إلى الصفر. في المرة القادمة سأطلق إعادة الكتابة صفحةً صفحة لا دفعة واحدة.
 - **استخدم ميزات الإطار الجديدة حيث تستحق.** مكونات الخادم وحالات التحميل أثمرت فورًا، أما المسارات المعترضة فاستهلكت جهدًا كبيرًا لنافذة لم يحتجها الموقع بعد.
 
-<!-- TODO: أضف تأملاتك الخاصة، ولقطات شاشة إن وُجدت (public/images/computerizer/ ثم heroImage). -->
+<!-- TODO: أضف تأملاتك الخاصة، ولقطات شاشة إن وُجدت (_assets/computerizer/ ثم heroImage). -->
 
 الشيفرة عامة: [Computerizer/React-Frontend](https://github.com/Computerizer/React-Frontend) لواجهة Next.js، و[Computerizer/Backend](https://github.com/Computerizer/Backend) لخادم Django والنسخة الأولى المبنية على القوالب.
 

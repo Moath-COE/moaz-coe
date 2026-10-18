@@ -80,4 +80,4 @@ model Event {
 
 توقف التطوير في مارس 2024، والموقع لم يعد متاحًا على الإنترنت. الشيفرة على GitHub في [Razorback360/CC_Website](https://github.com/Razorback360/CC_Website).
 
-<!-- TODO: تأكد من الحالة، وأضف لقطات شاشة إن وُجدت (public/images/cc-kfupm/ ثم heroImage). -->
+<!-- TODO: تأكد من الحالة، وأضف لقطات شاشة إن وُجدت (_assets/cc-kfupm/ ثم heroImage). -->

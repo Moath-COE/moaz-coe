@@ -67,7 +67,7 @@ Development stopped at the end of 2023, before launch. The wizard still ran on s
 - **Rewrites need a finish line.** Moving to Next.js gave us a better foundation, but it also reset progress. Next time I would ship the rewrite page by page instead of all at once.
 - **Use new framework features where they earn their place.** Server Components and loading states paid off immediately. Intercepting routes took a lot of effort for a modal the site didn't need yet.
 
-<!-- TODO: Add your own reflections, and screenshots if you have them (public/images/computerizer/, then set heroImage). -->
+<!-- TODO: Add your own reflections, and screenshots if you have them (_assets/computerizer/, then set heroImage). -->
 
 The code is public: [Computerizer/React-Frontend](https://github.com/Computerizer/React-Frontend) for the Next.js frontend, and [Computerizer/Backend](https://github.com/Computerizer/Backend) for the Django backend and the template-based first version.
 

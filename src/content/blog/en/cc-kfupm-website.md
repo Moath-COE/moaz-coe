@@ -80,4 +80,4 @@ Everything went through pull requests reviewed by teammates, and formatting was 
 
 Development wound down in March 2024, and the site is no longer online. The code is on GitHub at [Razorback360/CC_Website](https://github.com/Razorback360/CC_Website).
 
-<!-- TODO: Confirm the status, and add screenshots if you have them (public/images/cc-kfupm/, then set heroImage). -->
+<!-- TODO: Confirm the status, and add screenshots if you have them (_assets/cc-kfupm/, then set heroImage). -->

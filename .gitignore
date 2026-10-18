@@ -28,3 +28,8 @@ pnpm-debug.log*
 
 # jetbrains setting folder
 .idea/
+
+# Obsidian: keep the shared settings in .obsidian/app.json and templates.json, ignore personal state
+src/content/blog/.obsidian/*
+!src/content/blog/.obsidian/app.json
+!src/content/blog/.obsidian/templates.json

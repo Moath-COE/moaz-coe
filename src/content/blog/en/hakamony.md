@@ -77,6 +77,6 @@ My teammates owned the core algorithms, the storage layer, and player import and
 
 Several features are designed but not built yet: winner-stays and random-challenge modes, team captains, and a points calculator.
 
-<!-- TODO: Is development continuing? Add screenshots (put them in public/images/hakamony/ and set heroImage: '/images/hakamony/cover.jpg'). -->
+<!-- TODO: Is development continuing? Add screenshots (put them in _assets/hakamony/ and set heroImage: '../_assets/hakamony/cover.jpg'). -->
 
 The code is on GitHub at [Hakamony/source](https://github.com/Hakamony/source), and you can try the app at [hakamony.vercel.app](https://hakamony.vercel.app/).

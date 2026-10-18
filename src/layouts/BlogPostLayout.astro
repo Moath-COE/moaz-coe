@@ -1,6 +1,7 @@
 ---
 import type { CollectionEntry } from 'astro:content';
 import type { MarkdownHeading } from 'astro';
+import { Image } from 'astro:assets';
 import BaseLayout from './BaseLayout.astro';
 import FormattedDate from '@components/FormattedDate.astro';
 import CategoriesPreview from '@components/CategoriesPreview.astro';
@@ -8,7 +9,7 @@ import Ornament from '@components/Ornament.astro';
 import KindBadge from '@components/KindBadge.astro';
 import { labels, readingTime } from '@i18n/ui';
 import { site } from '@i18n/sections';
-import { postUrl, publicAsset } from '@i18n/utils';
+import { postUrl } from '@i18n/utils';
 import { publishedPosts, readingMinutes } from '@lib/blog';
 
 interface Props { post: CollectionEntry<'blog'>; headings?: MarkdownHeading[] }
@@ -34,7 +35,7 @@ const older = posts[index + 1];
 			<div class="wide">
 				<h1>{title}</h1>
 				<p class="post-description">{description}</p>
-				{heroImage && <img class="hero-image" src={publicAsset(heroImage)} alt="" />}
+				{heroImage && <Image class="hero-image" src={heroImage} alt="" widths={[800, 1200, 1600]} sizes="(min-width: 76rem) 76rem, 100vw" loading="eager" fetchpriority="high" />}
 			</div>
 		</header>
 		<div class="prose" data-copy={labels[locale].copy} data-copied={labels[locale].copied}><slot /></div>

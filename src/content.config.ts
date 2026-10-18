@@ -4,13 +4,14 @@ import { z } from 'astro/zod';
 
 const blog = defineCollection({
 	loader: glob({ base: './src/content/blog', pattern: '{ar,en}/**/*.{md,mdx}' }),
-	schema: z.object({
+	schema: ({ image }) => z.object({
 		title: z.string(),
 		description: z.string(),
 		locale: z.enum(['ar', 'en']),
 		pubDate: z.coerce.date(),
 		updatedDate: z.coerce.date().optional(),
-		heroImage: z.string().optional(),
+		// A path relative to the post, e.g. ../_assets/my-post/cover.jpg
+		heroImage: image().optional(),
 		kind: z.enum(['engineering', 'business', 'project']).optional(),
 		tags: z.array(z.string()).default([]),
 		draft: z.boolean().default(false),

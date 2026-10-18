@@ -22,6 +22,29 @@ function localizeFootnotes() {
 	};
 }
 
+// An image alone in its paragraph with a title, ![alt](path "Caption"), becomes a wide figure with that caption.
+function imageFigures() {
+	return (tree) => {
+		const walk = (node) => {
+			node.children?.forEach((child, i) => {
+				if (child.type !== 'element' || child.tagName !== 'p') return walk(child);
+				const content = child.children.filter((n) => !(n.type === 'text' && !n.value.trim()));
+				const [img] = content;
+				if (content.length !== 1 || img.type !== 'element' || img.tagName !== 'img' || !img.properties?.title) return;
+				const caption = String(img.properties.title);
+				delete img.properties.title;
+				node.children[i] = {
+					type: 'element',
+					tagName: 'figure',
+					properties: {},
+					children: [img, { type: 'element', tagName: 'figcaption', properties: {}, children: [{ type: 'text', value: caption }] }],
+				};
+			});
+		};
+		walk(tree);
+	};
+}
+
 // https://astro.build/config
 export default defineConfig({
 	// SITE_URL / SITE_BASE can override these, e.g. to preview a GitHub Pages project URL.
@@ -31,7 +54,7 @@ export default defineConfig({
 	integrations: [mdx(), sitemap()],
 
 	markdown: {
-		rehypePlugins: [localizeFootnotes],
+		rehypePlugins: [localizeFootnotes, imageFigures],
 		shikiConfig: {
 			themes: { light: 'vitesse-light', dark: 'vitesse-dark' },
 			defaultColor: false,

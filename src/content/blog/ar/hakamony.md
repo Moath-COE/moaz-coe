@@ -77,6 +77,6 @@ jobs:
 
 هناك ميزات مصممة لم تُبنَ بعد: نظام «الفائز يبقى» والتحدي العشوائي، وقادة الفرق، وحاسبة النقاط.
 
-<!-- TODO: هل التطوير مستمر؟ أضف لقطات شاشة (ضعها في public/images/hakamony/ واجعل heroImage: '/images/hakamony/cover.jpg'). -->
+<!-- TODO: هل التطوير مستمر؟ أضف لقطات شاشة (ضعها في _assets/hakamony/ واجعل heroImage: '../_assets/hakamony/cover.jpg'). -->
 
 الشيفرة على GitHub في [Hakamony/source](https://github.com/Hakamony/source)، ويمكنك تجربة التطبيق على [hakamony.vercel.app](https://hakamony.vercel.app/).
