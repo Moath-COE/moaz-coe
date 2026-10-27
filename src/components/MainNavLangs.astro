@@ -11,3 +11,12 @@ const other: Lang = locale === 'ar' ? 'en' : 'ar';
 ---
 
 <a class="language-switch" href={alternateUrl(Astro.url.pathname, locale, other, posts)} hreflang={other} lang={other} dir={other === 'ar' ? 'rtl' : 'ltr'}>{languages[other]}</a>
+
+<script>
+	// Remember an explicit choice so the home page stops redirecting by browser language (see functions/index.js).
+	document.querySelectorAll<HTMLAnchorElement>('.language-switch').forEach((link) => {
+		link.addEventListener('click', () => {
+			document.cookie = `lang=${link.hreflang}; path=/; max-age=31536000; samesite=lax`;
+		});
+	});
+</script>

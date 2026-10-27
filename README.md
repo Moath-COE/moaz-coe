@@ -40,17 +40,22 @@ The build resizes these images and converts them to WebP, so you can add full-si
 
 ## GitHub activity
 
-The home page shows your GitHub contribution heatmap and pinned repositories, fetched once at build time. Set your username as `github` in `src/i18n/sections.ts`, or remove it to hide the section. Locally the build uses your GitHub CLI login (`gh auth login`); in GitHub Actions it uses the workflow's `GITHUB_TOKEN`. If no token is available or the request fails, the section is simply left out. The data only changes when the site is rebuilt, so enable the daily `schedule` in the deploy workflow to keep it current.
+The home page shows your GitHub contribution heatmap and pinned repositories, fetched once at build time. Set your username as `github` in `src/i18n/sections.ts`, or remove it to hide the section. Locally the build uses your GitHub CLI login (`gh auth login`); on Cloudflare Pages it uses the `GITHUB_TOKEN` environment variable (see Deployment). If no token is available or the request fails, the section is simply left out. The data only changes when the site is rebuilt.
 
 ## Deployment
 
-The site deploys to GitHub Pages at https://moaz-coe.com from the `Moath-COE/moaz-coe` repository. `.github/workflows/deploy.yml` builds and deploys on every push to `main`, once a day (to refresh the GitHub activity), and on demand from the Actions tab.
+The site is hosted on Cloudflare Pages at https://moaz-coe.com, connected to the `Moath-COE/moaz-coe` repository in the Cloudflare dashboard. Every push to `main` builds and deploys it.
 
-- In the repository's **Settings → Pages**, the source must be **GitHub Actions** and the custom domain `moaz-coe.com` (also kept in `public/CNAME`).
-- The site address defaults to `https://moaz-coe.com/` in `astro.config.mjs`. The optional Actions variables `SITE_URL` and `SITE_BASE` override it, e.g. to serve from `https://moath-coe.github.io/repository/` (`SITE_URL=https://moath-coe.github.io`, `SITE_BASE=/repository`).
-- DNS is managed in Cloudflare: four `A` records (and `AAAA` records) for `@` pointing at GitHub Pages, and a `CNAME` for `www` to `moath-coe.github.io`. Keep them on **DNS only** (grey cloud); with Cloudflare's proxy on, GitHub can't issue the HTTPS certificate.
+- **Build settings:** framework preset Astro, build command `pnpm build`, output directory `dist`. The environment variables `NODE_VERSION=24` and `PNPM_VERSION=12.5.1` match the local setup.
+- **GitHub activity:** add a `GITHUB_TOKEN` environment variable (a GitHub personal access token with no extra scopes) so the build can fetch it. The data refreshes only when the site is rebuilt; use **Retry deployment** in the dashboard to refresh it without a push.
+- **Domains:** `moaz-coe.com` and `www.moaz-coe.com` are custom domains of the Pages project. `www` is redirected to the root by a Cloudflare Redirect Rule (the **Redirect from WWW to root** template).
+- The site address defaults to `https://moaz-coe.com/` in `astro.config.mjs`; the `SITE_URL` environment variable overrides it.
 
-See the [Astro GitHub Pages guide](https://docs.astro.build/en/guides/deploy/github/) for more.
+### Language by browser preference
+
+Arabic is the default at `/`. `functions/index.js` is a Pages Function that runs only for that page: a visitor whose browser prefers English (or lists neither Arabic nor English) is redirected to `/en/`. Choosing a language with the header switch stores a `lang` cookie, which then overrides the browser preference. Crawlers send no language preference, so they always see Arabic at `/`. Every page that has a translation also lists it with `hreflang` links for search engines.
+
+`pnpm preview` serves the files without the function; to test the redirect locally, build and run `npx wrangler pages dev dist`.
 
 ## Commands
 
